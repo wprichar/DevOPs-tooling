@@ -13,9 +13,9 @@ the Bluemix services **Monitoring and Analytics**, **Autoscale**, and **Cloudant
 ## Introduction
 
 A messaging web application has been created so you can deploy it into your personal space
-after signing up for Bluemix and the DevOps service. You will attach the
-**Monitoring and Analytics**, **Auto-Scaling**, and **Cloudant NoSQL DB** services to the application
-as well as learn how to begin using these services.
+after signing up for Bluemix and the DevOps service. You will attach the **Monitoring and Analytics**,
+**Auto-Scaling**, and **Cloudant NoSQL DB** services to the application as well as learn how to begin
+using these services.
 
 
 ## Sign up for / Log into Bluemix and DevOps
@@ -95,6 +95,7 @@ https://hub.jazz.net/docs.
 You can now configure your application code for deployment to your own Bluemix environment.
 You will be overwriting the deployed starter Node application, taking advantage of the services
 you previously configured.
+
 
 1. On your DevOps Services project page, click **EDIT CODE** at the top right. This opens your web IDE.
 	* In your web IDE you will see the a forked copy of this README.md.
