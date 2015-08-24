@@ -188,7 +188,7 @@ information that your Build and Deploy pipeline will need.
 2. Copy to clipboard the contents of **deploy.sh**.
 	1. In your web IDE, you'll find a **deploy.sh** file in your root directory. This contains
     information that your zero downtime deployment will need.
-	2. Highlight this entire script and right click twice and select **copy** to copy to clipboard. We will paste this information in the deploy script section of
+	2. Highlight this entire script and right click twice and select **copy** to copy to clipboard. You will paste this information in the deploy script section of
 	our pipeline later.
 3. In your application's DevOps Services page, click on **Build and Deploy** in the top right. This will take you to the Build and Deploy Pipeline Welcome panel.
 4.  Add a build stage to your pipeline.
