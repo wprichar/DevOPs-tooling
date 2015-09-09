@@ -86,7 +86,7 @@ up instances of the Web Application.
 4. Choose the **Space** that your starter Node.js app was created in and click **CREATE**.
 
 
-You have successfully forked this application code to your personal Jazz Hub space.
+You have successfully forked this application code to your personal DevOps space.
 To find more about Bluemix's DevOps features reference the docs at
 https://hub.jazz.net/docs.
 
@@ -227,4 +227,4 @@ information that your Build and Deploy pipeline will need.
 
 8. To demonstrate zero downtime deployment press the play button on the Build stage. This will build,
 deploy, and test your application. Spam the database within your Blue-Messenger application, while
-the deployment stage is running. You can monitor the deployment stage by clicking **View logs and history**. Once the pipeline has completed refresh your application in the browser and you will see the change to the buttons' edges. 
+the deployment stage is running. You can monitor the deployment stage by clicking **View logs and history**. Once the pipeline has completed refresh your application in the browser and you will see the change to the buttons' edges.
