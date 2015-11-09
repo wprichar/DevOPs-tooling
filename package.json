@@ -13,7 +13,9 @@
 		"mosca": "0.30.x",
         "ascoltatori": "0.21.0",
         "fs": "*",
-        "cloudant": "*"
+        "cloudant": "*",
+        "jshint": "latest",
+        "jshint-junit-reporter": "^0.2.2"
 	},
 	"repository": {}
 }
