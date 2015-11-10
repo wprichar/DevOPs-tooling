@@ -20,7 +20,7 @@ var dbCredentials = {
 
 //Get the port and host name from the environment variables
 var port = (process.env.VCAP_APP_PORT || 3000);
-var host = (process.env.VCAP_APP_HOST || '0.0.0.0');
+//var host = (process.env.VCAP_APP_HOST || '0.0.0.0');
 
 //setup cloudant db
 function initDBConnection() {
@@ -50,6 +50,7 @@ function initDBConnection() {
 	//check if DB exists if not create
 	cloudant.db.create(dbCredentials.dbName, function (err, res) {
 		if (err) { console.log('could not create db ', err); }
+		if(res) console.log("res");
     });
 	db = cloudant.use(dbCredentials.dbName);
 }
@@ -105,6 +106,7 @@ mqttServe.on('clientConnected', function(client) {
 mqttServe.on('published', function(packet, client){
 
 	console.log('Message: ', packet.payload.toString("utf8"));
+	if(client)console.log(client);
 	
 	fs.appendFile("../logs/mqtt.log", packet.topic + ": " + packet.payload.toString("utf8") + "\n", function(err) {
 	    if(err) {

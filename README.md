@@ -1,8 +1,8 @@
 # Workload - Scalable Web App
 
-adadadad
+
 ###Scalable Web Application Example Implemented in Cloud Foundry
-asdasdasd
+
 
 The messaging web application utilizes and demonstrates
 the Bluemix services **Monitoring and Analytics**, **Autoscale**, and **Cloudant NoSQL DB**.
@@ -23,7 +23,7 @@ using these services.
 ## Sign up for / Log into Bluemix and DevOps
 
 Sign up for Bluemix at https://console.ng.bluemix.net and DevOps Services at https://hub.jazz.net.
-When you sign up, you'll create IBM ID, create an alias, and register with Bluemix. adassdasdasdasd
+When you sign up, you'll create IBM ID, create an alias, and register with Bluemix. 
 
 
 ## Create Node.js Application and Attach the Services
