@@ -15,7 +15,8 @@
         "fs": "*",
         "cloudant": "*",
         "jshint": "latest",
-        "jshint-junit-reporter": "^0.2.2"
+        "jshint-junit-reporter": "^0.2.2",
+        "gulp-jshint-file-reporter": "*"
 	},
 	"repository": {}
 }
