@@ -9,11 +9,12 @@ describe( "Mosca Server", function(done){
         it( "server should start", function(done){
             var output;
             var mqttServe = new mosca.Server({});
-            mqttServe.on('clientConnected', function(client) {
-    			console.log('client connected', client.id);
-    			expect(client.id).to.equal(5);
-    			done();
-			});
+            server.on('ready', setup);
+            function setup() {
+  					console.log('Mosca server is up and running');
+  					expect(client.id).to.equal(5);
+    				done();
+			}
          });
     });
 });
