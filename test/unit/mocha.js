@@ -11,8 +11,7 @@ describe( "Mosca Server", function(done){
             var mqttServe = new mosca.Server({});
             mqttServe.on('clientConnected', function(client) {
     			console.log('client connected', client.id);
-    			expect(client.id).to.not.equal(null);
-    			done();
+    			expect(client.id).to.equal(5);
 			});
          });
     });
