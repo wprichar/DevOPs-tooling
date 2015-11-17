@@ -17,8 +17,7 @@
         "jshint": "latest",
         "jshint-junit-reporter": "^0.2.2",
         "jshint-checkstyle-file-reporter": "*",
-        "csslint": "^0.10.0",
-        "wdio": "*"
+        "csslint": "^0.10.0"
 	},
 	"repository": {}
 }
