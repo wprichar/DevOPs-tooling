@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(){
 	var spamming = false;
     var connected = false;
