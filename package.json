@@ -3,7 +3,8 @@
 	"version": "0.0.1",
 	"description": "A simple nodejs app for Bluemix",
 	"scripts": {
-		"start": "node app.js"
+		"start": "node app.js",
+		"test": "./node_modules/.bin/mocha --reporter spec ./test/unit/mocha.js"
 	},
 	"dependencies": {
 		"express": "4.12.x",
@@ -17,7 +18,9 @@
         "jshint": "latest",
         "jshint-junit-reporter": "^0.2.2",
         "jshint-checkstyle-file-reporter": "*",
-        "csslint": "^0.10.0"
+        "csslint": "^0.10.0",
+        "chai": "*",
+        "mocha": "*"
 	},
 	"repository": {}
 }
