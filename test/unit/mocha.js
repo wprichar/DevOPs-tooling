@@ -11,8 +11,9 @@ describe( "Mosca Server", function(done){
             var mqttServe = new mosca.Server({});
             mqttServe.on('ready', setup);
             function setup() {
-  					console.log('Mosca server is up and running');
-  					expect(client.id).to.equal(5);
+            		// if you get here the mosca server is up and running
+  					output="Mosca server is up and running";
+  					expect(output).to.equal("Mosca server is up and running");
     				done();
 			}
          });
