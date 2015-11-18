@@ -62,7 +62,7 @@ initDBConnection();
 var app = express();
 
 //initialize new relic monitoring
-require("./newrelic/newrelic").initialize();
+require("./newrelic").initialize();
 
 
 

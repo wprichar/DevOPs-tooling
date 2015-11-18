@@ -5,7 +5,7 @@
  * description of configuration variables and their potential values.
  */
 
- var pkg = require("../package.json")
+ var pkg = require("./package.json")
  var vcapServices = JSON.parse(process.env.VCAP_SERVICES);
  var APP_NAME     = pkg.name || "unnamed-app"
  
