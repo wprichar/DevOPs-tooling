@@ -10,7 +10,7 @@ var express = require('express');
 var http = require('http');
 var mosca = require('mosca');
 var fs = require('fs');
-**require('newrelic');**
+
 
 var db;
 var cloudant;
