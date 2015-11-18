@@ -20,7 +20,8 @@
         "jshint-checkstyle-file-reporter": "*",
         "csslint": "^0.10.0",
         "chai": "*",
-        "mocha": "*"
+        "mocha": "*",
+        "newrelic": "*"
 	},
 	"repository": {}
 }
