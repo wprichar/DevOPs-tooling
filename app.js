@@ -61,6 +61,11 @@ initDBConnection();
 // create a new express server
 var app = express();
 
+//initialize new relic monitoring
+require("./newrelic/newrelic").initialize();
+
+
+
 app.set('port', port);
 app.set('view engine', 'ejs');
 
