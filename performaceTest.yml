@@ -1,0 +1,25 @@
+---
+execution:
+    - concurrency: 20
+      ramp-up: 30s
+      hold-for: 2m
+      scenario: main
+
+modules: 
+    blazemeter:
+      token: 777b3198350434a55e0a
+      
+      
+scenarios:
+    think-time: 0.75
+    requests:
+       - http://deOps-architecture.mybluemix.net
+       
+reporting: 
+      - module: blazemeter
+        test: Taurus in Bluemix
+
+      - module: fail-criteria
+        criterias: 
+        - avg-rt of Sample Lable>150ms for 10s, stop as failed
+        - fail of Same Lable>50% for 10s, stop as failed
