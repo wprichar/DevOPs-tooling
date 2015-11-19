@@ -20,5 +20,5 @@ reporting:
         test: Taurus in Bluemix
       - module: fail-criteria
         criterias: 
-        - avg-rt of Sample Lable>1ms for 10s, stop as failed
-        - fail of Same Lable>50% for 10s, stop as failed
+        - avg-rt>1ms for 10s, stop as failed
+        - fail>50% for 10s, stop as failed
