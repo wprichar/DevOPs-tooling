@@ -1,0 +1,32 @@
+---
+execution:
+  - concurrency: 5
+    ramp-up: 1m
+    hold-for: 30s
+    scenario: main
+
+modules:
+  blazemeter:
+    token: bc804b12298b7edba077
+
+reporting:
+  - module: blazemeter
+    test: Taurus in CodeDeploy
+
+scenarios:
+  main:
+    think-time: 1.0
+    headers:
+        Accept-Encoding: gzip, deflate
+    requests:
+      - url: http://blazedemo.com/index.php
+        method: GET
+        label: Home Page
+      - url: http://blazedemo.com/reserve.php
+        method: POST
+        label: Choose Cities
+        headers:
+          Content-Type: application/x-www-form-urlencoded
+        body: 
+          toPort: London
+          fromPort: Havana
