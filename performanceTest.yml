@@ -11,8 +11,9 @@ execution:
 modules: 
     blazemeter:
       token: 777b3198350434a55e0a
-      
-      
+      browser-open: false
+    console:
+      disable: true
        
 reporting: 
       - module: blazemeter
