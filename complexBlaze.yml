@@ -8,6 +8,7 @@ execution:
 modules:
   blazemeter:
     token: bc804b12298b7edba077
+    browser-open: start
 
 reporting:
   - module: blazemeter
