@@ -3,16 +3,16 @@ execution:
     - concurrency: 20
       ramp-up: 30s
       hold-for: 2m
+      scenarios:
+          think-time: 0.75
+          requests:
+              - http://deOps-architecture.mybluemix.net
 
 modules: 
     blazemeter:
       token: 777b3198350434a55e0a
       
       
-scenarios:
-    think-time: 0.75
-    requests:
-       - http://deOps-architecture.mybluemix.net
        
 reporting: 
       - module: blazemeter
