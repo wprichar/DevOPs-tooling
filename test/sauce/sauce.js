@@ -85,6 +85,11 @@ describe('tutorial (' + desired.browserName + ')', function() {
       .get("http://deops-architecture.mybluemix.net/")
       .title()
       .should.become('Blue Messenger')
+      .elementById("message")
+      .type("test")
+      .elementById("send")
+      .click()
+      .elementById('messageCount').should.become(1)     
       .nodeify(done);
   });
 
