@@ -80,24 +80,13 @@ describe('tutorial (' + desired.browserName + ')', function() {
   });
 
 
-  it('test message is sent and messageCount is incrumented', function(done) {
-
+  it('Landing page', function(done) {
     browser
-    .get("http://deops-architecture.mybluemix.net/")
-    .elementById("message", function(err, el) {
-      browser.next('clear', el, function(err) {
-        broswer.next('type', el, "test", noop);
-      });
-    })
-    .elementById("send", function(err, el) {
-      browser.next('clickElement', el, noop);
-    })
-	.elementById('messageCount').should.become(1)
-	  .close(function(err) {
-      done(err);
-    });
-
-   });
+      .get("http://deops-architecture.mybluemix.net/")
+      .title()
+      .should.become('Blue Messenger')
+      .nodeify(done);
+  });
 
 
 });
