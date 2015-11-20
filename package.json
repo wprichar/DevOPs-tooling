@@ -29,7 +29,14 @@
         "lodash": "*",
         "colors": "*",
         "chai-as-promised": "*",
-        "assert": "*"
+        "assert": "*",
+            "grunt": "~0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-concurrent": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-env": "latest",
+    "grunt-simple-mocha": "latest"
 	},
 	"repository": {}
 }
