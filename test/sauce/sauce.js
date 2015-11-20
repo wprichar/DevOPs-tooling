@@ -96,6 +96,9 @@ describe('Test message sent', function() {
       browser.next('clickElement', el, noop);
     })
 	.elementById('messageCount').should.become(1)
+	  .close(function(err) {
+      done(err);
+    });
 
    });
  });
