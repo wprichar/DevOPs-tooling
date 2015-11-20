@@ -81,8 +81,6 @@ describe('tutorial (' + desired.browserName + ')', function() {
 
 describe('Test message sent', function() {
 
-  this.timeout(60000);
-
   it('test message is sent and messageCount is incrumented', function(done) {
 
     browser
