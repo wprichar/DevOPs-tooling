@@ -1,18 +1,46 @@
-describe('mocha spec examples', function() {
- 
-    it('should get home page', function* () {
-        yield browser.url('/');
-        expect(yield browser.getTitle()).toBe('Node.js');
-        expect(yield browser.getText('#home-intro')).toContain('JavaScript runtime');
+var wd = require('wd'),
+    chai = require('chai'),
+    expect = chai.expect,
+    _ = require('underscore'),
+    fs = require('fs'),
+    path = require('path'),
+    uuid = require('uuid-js');
+
+var VARS = {};
+
+// This assumes that selenium is running at http://127.0.0.1:4444/wd/hub/
+var noop = function() {},
+    b = wd.remote();
+
+describe('Test message sent', function() {
+
+  this.timeout(60000);
+
+  it('test message is sent and messageCount is incrumented', function(done) {
+
+    b.chain(function(err) {
+      done(err);
+    })
+    .init({
+      browserName: 'chrome'
+    })
+    .get("http://deops-architecture.mybluemix.net/")
+    .elementById("message", function(err, el) {
+      b.next('clear', el, function(err) {
+        b.next('type', el, "test", noop);
+      });
+    })
+    .elementById("send", function(err, el) {
+      b.next('clickElement', el, noop);
+    })
+	.elementById('messageCount').should.become(1)
+    .close(function(err) {
+      done(err);
     });
- 
-    it('should go to the doc page', function* () {
-        yield browser.click('=API Docs');
-        expect(yield browser.getTitle()).toContain('Manual');
-    });
- 
-    it('should return to the home page', function* () {
-        yield browser.click('=V8');
-        expect(yield browser.getText('#apicontent h1')).toContain('V8');
-    });
+
+  });
+});
+
+afterEach(function() {
+  b.quit();
 });

@@ -4,7 +4,8 @@
 	"description": "A simple nodejs app for Bluemix",
 	"scripts": {
 		"start": "node app.js",
-		"test": "./node_modules/.bin/mocha --reporter spec ./test/unit/mocha.js"
+		"test": "./node_modules/.bin/mocha --reporter spec ./test/unit/mocha.js",
+		"sauce-test": "grunt test:sauce:parallel"
 	},
 	"dependencies": {
 		"express": "4.12.x",
@@ -21,7 +22,12 @@
         "csslint": "^0.10.0",
         "chai": "*",
         "mocha": "*",
-        "newrelic": "*"
+        "newrelic": "*",
+        "wd": "*",
+        "underscore": "*",
+        "path": "*",
+        "uuid-js": "*",
+        "lodash": "*"
 	},
 	"repository": {}
 }
