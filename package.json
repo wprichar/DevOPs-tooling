@@ -36,7 +36,8 @@
     "grunt-contrib-jshint": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-env": "latest",
-    "grunt-simple-mocha": "latest"
+    "grunt-simple-mocha": "latest",
+    "mocha-jenkins-reporter": "^0.1.9"
 	},
 	"repository": {}
 }
