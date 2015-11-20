@@ -79,7 +79,6 @@ describe('tutorial (' + desired.browserName + ')', function() {
       .nodeify(done);
   });
 
-describe('Test message sent', function() {
 
   it('test message is sent and messageCount is incrumented', function(done) {
 
@@ -99,6 +98,6 @@ describe('Test message sent', function() {
     });
 
    });
- });
+
 
 });
