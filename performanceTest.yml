@@ -6,7 +6,7 @@ execution:
       scenario:
           think-time: 0.75
           requests: 
-             - url: ${process.env.APP_NAME}
+             - url:  <%=process.env.APP_NAME %>
                method: GET
 modules: 
     blazemeter:
