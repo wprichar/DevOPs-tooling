@@ -6,7 +6,7 @@ execution:
       scenario:
           think-time: 0.75
           requests:
-              - http:// + process.env.APP_NAME + .mybluemix.net/;
+              - <%= process.env.APP_NAME %>
 
 modules: 
     blazemeter:
