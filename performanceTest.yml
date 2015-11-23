@@ -5,9 +5,7 @@ execution:
       hold-for: 2m
       scenario:
           think-time: 0.75
-          requests:
-              - <%= process.env.APP_NAME %>
-
+          requests: ${process.env.APP_NAME}
 modules: 
     blazemeter:
       token: 777b3198350434a55e0a
