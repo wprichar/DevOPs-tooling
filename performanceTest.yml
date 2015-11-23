@@ -6,7 +6,7 @@ execution:
       scenario:
           think-time: 0.75
           requests:
-              - http://deOps-architecture.mybluemix.net
+              - http:// + process.env.APP_NAME + .mybluemix.net/;
 
 modules: 
     blazemeter:
