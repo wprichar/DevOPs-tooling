@@ -30,16 +30,16 @@
         "colors": "*",
         "chai-as-promised": "*",
         "assert": "*",
-            "grunt": "~0.4.5",
-    "grunt-cli": "^0.1.13",
-    "grunt-concurrent": "latest",
-    "grunt-contrib-jshint": "latest",
-    "grunt-contrib-watch": "latest",
-    "grunt-env": "latest",
-    "grunt-simple-mocha": "latest",
-    "mocha-jenkins-reporter": "^0.1.9",
-    "mocha-junit-reporter": "^1.6.1",
-    "xunit-file": "~0.0.7"
+        "grunt": "~0.4.5",
+        "grunt-cli": "^0.1.13",
+        "grunt-concurrent": "latest",
+        "grunt-contrib-jshint": "latest",
+        "grunt-contrib-watch": "latest",
+        "grunt-env": "latest",
+        "grunt-simple-mocha": "latest",
+        "mocha-jenkins-reporter": "^0.1.9",
+        "mocha-junit-reporter": "^1.6.1",
+        "xunit-file": "~0.0.7"
 	},
 	"repository": {}
 }

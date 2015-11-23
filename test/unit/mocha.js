@@ -2,6 +2,14 @@ var chai = require("chai"),
     expect = chai.expect;
 var mosca = require('mosca');
 
+before(function(done) {
+			.nodeify(done);	
+}
+
+after(function(done) {
+  
+      .nodeify(done);
+});
 
 describe( "Mosca Server", function(done){
 
