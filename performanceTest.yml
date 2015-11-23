@@ -6,6 +6,8 @@ execution:
       scenario:
           think-time: 0.75
           requests: 
+               url: 
+               method: GET
 modules: 
     blazemeter:
       token: 777b3198350434a55e0a
