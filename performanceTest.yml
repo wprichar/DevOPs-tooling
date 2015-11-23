@@ -6,8 +6,7 @@ execution:
       scenario:
           think-time: 0.75
           requests: 
-                - url: http://overwritten.com
-                  method: GET
+
 modules: 
     blazemeter:
       token: 777b3198350434a55e0a
