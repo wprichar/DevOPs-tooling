@@ -89,8 +89,8 @@ describe('tutorial (' + desired.browserName + ')', function() {
       .type("test")
       .elementById("send")
       .click()
-      .elementById('messageCount').innerHTML
-      //.should.eventually.equal(1)
+      .elementById('messageCount')
+      .innerHTML.should.eventually.equal(1)
       .nodeify(done);
   });
 
