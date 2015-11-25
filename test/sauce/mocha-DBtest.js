@@ -16,7 +16,7 @@ describe( "Query database to confirm message was sent ", function(){
               request.get(process.env.url, function (err, res, body){
                      expect(res.statusCode).to.equal(200);
                      output = JSON.parse(res.body);
-                     expect(output.rows[0].id).to.equal(null);
+                     expect(output.rows[0].id).to.not.equal(null);
                      done();
                });
          });
