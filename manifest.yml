@@ -17,6 +17,9 @@ declared-services:
   BlueMessenger-BlazeMeter:
     lable: blazemeter
     plan: free-tier
+  BlueMessenger-autoscaling:
+    lable: Auto-Scaling
+    plan: free
 applications:
 - disk_quota: 1024M
   host: blue-messenger
