@@ -20,5 +20,5 @@ When you sign up, you'll create IBM ID, create an alias, and register with Bluem
 
 ## Deploy to Bluemix
 
- [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://hub.jazz.net/git/wprichar/DevOPs-tooling)
+ [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://hub.jazz.net/project/wprichar/DevOPs-tooling)
 
