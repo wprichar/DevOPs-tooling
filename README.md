@@ -31,7 +31,7 @@ Go to MY PROJECTS
 Select BUILD & DEPLOY
 You can monitor the stages by selecting View logs and history.
  
- ## Retrive Blazemeter token 
+## Retrive Blazemeter token 
  
  The pipeline uses **Blazemeter** for it's performance testing. We need to get the API Token from our provisioned **Blazemeter** account and put it in the pipeline.
 
