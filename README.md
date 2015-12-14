@@ -146,3 +146,11 @@ This pipeline provides three different sources of real time data of our Blue Mes
 - Google Analytics - a link to your data is found here - https://ga-dev-tools.appspot.com/account-explorer/
 - New Relic - load the dashboard from by selecting **Bluemessenger-NewRelic** in you application's dashboard
 - Monitoring & Analytics - select **Bluemessenger-monitoring** in your application's dashboard
+
+### Track and Plan 
+
+Blue provides a 
+
+for more see the docs -
+
+https://hub.jazz.net/tutorials/trackplan/
