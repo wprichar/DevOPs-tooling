@@ -76,6 +76,15 @@ Do not commit and push to master yet. We will first make a noticeable change to 
 
 Now we need to create a change to the source code and commit the changes to the master branch. Once we do this, it will kick off the pipeline and we can monitor each deployment stage from there.
 
+1. Return to your project in Bluemix DevOps Services and click EDIT CODE at top right of the page.
+2. in the public/index.html file change the title of the application from **Blue Messenger** to **< yourname >'s BlueMessenger**
+3. Select **File** and then **Save**
+4. Click the **Git** symbol on the left to bring up your **Git** dashboard
+5. Give a commit message and select all files and press **Commit**
+6. Push it to master
+
+This change to the master branch will kick of our deployment pipeline. Monitor it in **BUILD AND DEPLOY**. Read below for descriptions about each step the application goes through to get to production.
+
 ## Monitor pipeline for continous deployment education
 
 At this point in the guide we have started the pipeline and we will now review each stage and how it demonstrates DevOPs and contious integration. 
