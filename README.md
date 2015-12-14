@@ -119,7 +119,7 @@ This stage pushes the new version of BlueMessenger to a Cloud Foundry applicatio
 
 ### Performance test with Blazemeter
 
-In this tile, we perform our performance testing with Taurus and Blazemeter. You can monitor the testing pass fail status in ** View logs and history**. Once the stage finishes it will provide your a blaze meter hyperlink you can click to see graphical representations of your test results on blaze meter's website. The scripts that is sent to Blazemeter for perfomance testing is **performanceTest.yml** in root directory of DevOPs services. In this configuration file you set the pass/fail thresholds in **criteria** under **reporting**. You would change the milli seconds and duration of time in avg-rt ( average response time ) or the percentage of fails (fail) with the duration. 
+In this tile, we perform our performance testing with Taurus and Blazemeter. You can monitor the testing pass fail status in **View logs and history** . Once the stage finishes it will provide your a blaze meter hyperlink you can click to see graphical representations of your test results on blaze meter's website. The scripts that is sent to Blazemeter for perfomance testing is **performanceTest.yml** in root directory of DevOPs services. In this configuration file you set the pass/fail thresholds in **criteria** under **reporting**. You would change the milli seconds and duration of time in avg-rt ( average response time ) or the percentage of fails (fail) with the duration. 
 
 ### SauceLabs selenium test with database check
 
