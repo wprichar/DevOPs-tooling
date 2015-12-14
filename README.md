@@ -97,7 +97,7 @@ In this stage we perform a
 npm install
 ```
 
-to install our needed dependencies.
+to install our needed dependencies and we send our a commit message to slack with webhooks. Check the channel your provided when setting up your webhooks to see the commit message. It will tell you the name of the last commit being pushed into the pipeline under the name **incoming-webhook**
 
 ### Linting + Unit test
 
