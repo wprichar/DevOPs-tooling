@@ -79,11 +79,11 @@ Now we need to create a change to the source code and commit the changes to the 
 
 1. Return to your project in Bluemix DevOps Services and click EDIT CODE at top right of the page.
 2. Add the lines of code, found below, to the bottom of your /public/stylesheets/style.css in your web IDE. This change will make the corners of the buttons pointed and not curved.
-
+```
  .btn-lg{
      border-radius: 0;
  }
- 
+```
 3. Select **File** and then **Save**
 4. Click the **Git** symbol on the left to bring up your **Git** dashboard
 5. Give a commit message and select all files and press **Commit**
