@@ -44,7 +44,6 @@ stages:
     script: |-
       #!/bin/bash
       # invoke jshint on app.js .. edit .jshintrc in root directory to change parameters
-      npm install
       node_modules/.bin/jshint app.js --reporter=node_modules/jshint-junit-reporter/reporter.js > test/jslint.xml
     enable_tests: true
     test_file_pattern: test/jslint.xml
