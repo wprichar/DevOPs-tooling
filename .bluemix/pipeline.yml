@@ -139,7 +139,7 @@ stages:
       space: ${CF_SPACE}
       application: ${CF_APP}
     script: "#!/bin/bash\noutput=`cf apps`\nif [[ $(echo $output | grep \"${CF_APP}-test\"\
-      ) = \"\" ]]\nthen\n  echo \"Test application found of BlueMessenger ... assuming\
+      ) = \"\" ]]\nthen\n  echo \"No test application found of BlueMessenger ... assuming\
       \ first deploy ... skipping test\"\nelse\n   output=`cf env \"${CF_APP}-test\"\
       \ | grep url | grep bluemix.cloudant.com`\n   export url=${output:13:${#output}-15}\n\
       \   echo ${url}\nfi \n"
