@@ -1,25 +1,3 @@
-declared-services:
-  BlueMessenger-AppScan:
-    label: AppScan Dynamic Analyzer
-    plan: standard
-  BlueMessenger-cloudantNoSQLDB:
-    label: cloudantNoSQLDB
-    plan: Shared
-  BlueMessenger-cloudantNoSQLDB-test:
-    label: cloudantNoSQLDB
-    plan: Shared
-  BlueMessenger-ActiveDeploy:
-    label: activedeploy
-    plan: free
-  BlueMessenger-NewRelic:
-    lable: newrelic
-    plan: standard
-  BlueMessenger-BlazeMeter:
-    lable: blazemeter
-    plan: free-tier
-  BlueMessenger-autoscaling:
-    lable: Auto-Scaling
-    plan: free
 applications:
 - disk_quota: 1024M
   host: blue-messenger
@@ -28,6 +6,3 @@ applications:
   domain: mybluemix.net
   instances: 1
   memory: 512M
-  services:
-    - dat-spark
-    - dat-cloudantNoSQLDB
