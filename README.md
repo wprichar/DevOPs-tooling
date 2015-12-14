@@ -27,9 +27,10 @@ Once you fill in the needed fields click **DEPLOY**. This will start the deploym
  After the pipeline has been configured, you can monitor the deployment by doing the following steps
 
 Select your newly created project in DevOps Services.
-Go to MY PROJECTS
-Select BUILD & DEPLOY
-You can monitor the stages by selecting View logs and history.
+Go to **MY PROJECTS**
+Select **BUILD & DEPLOY**
+You can monitor the stages by selecting **View logs and history**.
+
 ## Retrieve Slack webhook
    
 In our first stage of the pipeline we add the webhook url to give more detailed information on the changes commited in GIT. We need to reterieve the webhook and put it in the stage as an environment variable. 
