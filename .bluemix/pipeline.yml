@@ -197,7 +197,7 @@ stages:
       space: ${CF_SPACE}
       application: ${CF_APP}
     script: "#!/bin/bash\noutput=`cf apps`\nif [[ $(echo $output | grep \"${CF_APP}-test\"\
-      ) = \"\" ]]\nthen\n  echo \"Test application found of BlueMessenger ... assuming\
+      ) = \"\" ]]\nthen\n  echo \"No test application found of BlueMessenger ... assuming\
       \ first deploy ... skipping test\"\nelse\n   cf stop \"${CF_APP}-test\"\n  \
       \ cf delete \"${CF_APP}-test\" -f\n   cf delete-service \"BlueMessenger-cloudant-test\"\
       \ -f\nfi \n\n"
