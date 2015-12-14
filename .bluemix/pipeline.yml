@@ -151,7 +151,7 @@ stages:
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
       application: ${CF_APP}
-    ACCESS: ${SAUCE_KEY}
+    ACCESS: ${SAUCE_ACCESS_TOKEN}
     DL_ASSETS: 'true'
     SELECT_CMD: custom
     USER_ID: ${SAUCE_USER}
