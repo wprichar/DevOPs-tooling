@@ -101,8 +101,12 @@ to install our needed dependencies and we send our a commit message to slack wit
 
 ### Linting + Unit test
 
-Here we perform our syntax checking with jslint and csslint. The script files that are called 
+Here we perform our syntax checking with jslint and csslint with the npm modules jshint and csslint. The test results are written to junit-xml which can be seen in the **Tests** tab of **View logs and history**
 
+You can set up configuration for the jslint by editing the .jshintrc in root directly of your DevOPs services. For more examples see -
+http://jshint.com/docs/
+
+The mocha test done is a simple test that just creates a server and waits for callback that it was successfull. We will have behavioral driven tests in our testing environment.
 
 ### Push to test
 
