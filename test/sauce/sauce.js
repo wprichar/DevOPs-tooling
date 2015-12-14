@@ -82,7 +82,7 @@ describe('tutorial (' + desired.browserName + ')', function() {
 
   it('Landing page', function(done) {
     browser
-      .get(process.env.APP_NAME + ".mybluemix.net")
+      .get(process.env.APP_NAME + "-test.mybluemix.net")
       .title()
       .should.become('Blue Messenger')
       .elementById("message")
