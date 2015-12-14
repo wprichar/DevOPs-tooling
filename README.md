@@ -30,23 +30,47 @@ Select your newly created project in DevOps Services.
 Go to MY PROJECTS
 Select BUILD & DEPLOY
 You can monitor the stages by selecting View logs and history.
- 
+## Retrieve Slack webhook
+   
+In our first stage of the pipeline we add the webhook url to give more detailed information on the changes commited in GIT. We need to reterieve the webhook and put it in the stage as an environment variable. 
+
+
+1. Navigate to https://my.slack.com/services/new/incoming-webhook/ to add a new webhook
+2. Enter the channel you specified during the Deploy to Bluemix process and click **Add Incoming WebHooks Integration** 
+3. Copy the **Webhook URL** to clipboard
+4. Return to your project in Bluemix DevOps Services and click **BUILD AND DEPLOY**. This will take you to your project's deployment pipeline.
+5. In the first tile **Build Stage** click the gear icon to **configure**. Select **ENVIRONMENT PROPERTIES** tab and in the **Value** part of the **SLACK_WEBHOOK_PATH** paste your webhook from clipboard.
+6. Click **SAVE**
+
 ## Retrive Blazemeter token 
  
- The pipeline uses **Blazemeter** for it's performance testing. We need to get the API Token from our provisioned **Blazemeter** account and put it in the pipeline.
+ The pipeline uses **Blazemeter** for it's performance testing. We need to get the API Token from **Blazemeter**, by signing up for a free trial, and put it into our pipeline. 
+ 
+ 1. Navigate to https://blazemeter.com/ and select **START TESTING NOW**
+ 2. Fill in your information and you will be taking to a wizard.
+ 3. Click skip wizard and in your dashboard select the person icon drop down at top right
+ 4. Select **API Key**
+ 5. Copy **Your Current Key** to clipboard
+ 6. Return to your project's pipeline in Bluemix DevOps Services
+ 7. Click gear icon on the **Performance test with Blazemeter** to configure
+ 8. Select **ENVIORNMENT PROPERTIES** at top 
+ 9. For the **token** field paste your blazemeter **API KEY** into the value
+ 10. Click **SAVE**
+ 
+You pipeline is now set up to use Taurus with Blazemeter to do performance testing.
 
 ## Sign up for Google Analytics and put API into the source code
 
-Google Analytics has been intergrated into this version of Blue Messenger. To link your own google analytics to your Blue Messenger you will need to retrieve a **Tracking ID**. To get on visit - 
+Google Analytics has been intergrated into this version of Blue Messenger. To link your own google analytics to your Blue Messenger you will need to retrieve a **Tracking ID**. To get one visit - 
 
 https://ga-dev-tools.appspot.com/account-explorer/
 
 Once you have obtained a **Tracking ID** it needs to be put into the applications source code. 
 
-1. Return to your forked project in Bluemix DevOps Services and click EDIT CODE at top right of the page.
+1. Return to your project in Bluemix DevOps Services and click EDIT CODE at top right of the page.
 2. In the public/index.html file, in the **script** block with the **GoogleAnalyticsObject** in it replace the **<replace me>** in the first **ga()** field with your **Tracking ID**
 
-Do not commit and push to master yet. We will first make a noticeable change to the application to simulate a new version update because commiting to master will kick off the pipeline.
+Do not commit and push to master yet. We will first make a noticeable change to the application to simulate a new version update and then commit to master, which will kick off our pipeline. 
 
 ## Make change to Application and Commit changes to master
 
