@@ -78,7 +78,12 @@ Do not commit and push to master yet. We will first make a noticeable change to 
 Now we need to create a change to the source code and commit the changes to the master branch. Once we do this, it will kick off the pipeline and we can monitor each deployment stage from there.
 
 1. Return to your project in Bluemix DevOps Services and click EDIT CODE at top right of the page.
-2. in the public/index.html file change the title of the application from **Blue Messenger** to **< yourname >'s BlueMessenger**
+2. Add the lines of code, found below, to the bottom of your /public/stylesheets/style.css in your web IDE. This change will make the corners of the buttons pointed and not curved.
+
+ .btn-lg{
+     border-radius: 0;
+ }
+ 
 3. Select **File** and then **Save**
 4. Click the **Git** symbol on the left to bring up your **Git** dashboard
 5. Give a commit message and select all files and press **Commit**
