@@ -123,7 +123,7 @@ In this tile, we perform our performance testing with Taurus and Blazemeter. You
 
 ### SauceLabs selenium test with database check
 
-In this stage a selenium test is executed on the front end to send a message to the cloudant database using **Sauce Labs**. After that, a mocha test is run to check there is a value in the newly created test database.
+In this stage a selenium test is executed on the front end to send a message to the cloudant database using **Sauce Labs**. After that, a mocha test is run to check there is a value in the newly created test database. The Sauce Labs artifacts are uploaded to the **ARTIFACTS** tab in ** View logs and history ** . The Mocha test results are written to junit-xml and you can see them in the **TEST** tab in ** View logs and history **. You find the scripts in test/sauce in the root directory for your DevOPs service.
 
 ### Delete testing environment
 
@@ -131,4 +131,18 @@ Here our test application and database are deleted. We do this for this demonstr
 
 ### Push to Production using Active Deploy service + Appscan
 
+At this point our pipeline has gone through testing and the testing environment has been deleted. Now the goal is to push the new version of **Blue Messenger** to production. To do this we will use the Bluemix service **Active Deploy**. The Active Deploy service takes two running applications ( the new and old version ) and provides a zero downtime transition. For more information on the service see the Bluemix doc - 
 
+https://www.ng.bluemix.net/docs/services/ActiveDeploy/index.html
+
+After the deployment is done the last **JOB** done is a Rest API call to the binded service **App Scan Dynamic Analyzer**, which provideds us a security scan of our production application. After the API call you can monitor the progress of the scan by click on the service in your application's dashboard. For more information on the **App Scan Dynamic Analyzer** see the bluemix doc - 
+
+https://www.ng.bluemix.net/docs/#services/AppScanDynamicAnalyzer/index.html#AppScanDynamicAnalyzer
+
+### Monitoring 
+
+This pipeline provides three different sources of real time data of our Blue Messenger in production. 
+
+- Google Analytics - a link to your data is found here - https://ga-dev-tools.appspot.com/account-explorer/
+- New Relic - load the dashboard from by selecting **Bluemessenger-NewRelic** in you application's dashboard
+- Monitoring & Analytics - select **Bluemessenger-monitoring** in your application's dashboard
