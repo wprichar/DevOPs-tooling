@@ -110,14 +110,20 @@ The mocha test done is a simple test that just creates a server and waits for ca
 
 ### Push to test
 
-This stage pushes our new version of BlueMessenger to a Cloud Foundry application with the test extension to be used for testing.
+This stage pushes the new version of BlueMessenger to a Cloud Foundry application with the test extension to be used for testing. A test cloudant database is also create at this stage to properly demonstrate an enterprise tool chain where the production database is not linked till push to production happens. 
 
 ### Performance test with Blazemeter
 
-In this tile, we perform our performance testing with Taurus and Blazemeter. 
+In this tile, we perform our performance testing with Taurus and Blazemeter. You can monitor the testing pass fail status in ** View logs and history**. Once the stage finishes it will provide your a blaze meter hyperlink you can click to see graphical representations of your test results on blaze meter's website. The scripts that is sent to Blazemeter for perfomance testing is **performanceTest.yml** in root directory of DevOPs services. In this configuration file you set the pass/fail thresholds in **criteria** under **reporting**. You would change the milli seconds and duration of time in avg-rt ( average response time ) or the percentage of fails (fail) with the duration. 
 
 ### SauceLabs selenium test with database check
 
+In this stage a selenium test is executed on the front end to send a message to the cloudant database using **Sauce Labs**. After that, a mocha test is run to check there is a value in the newly created test database.
+
 ### Delete testing environment
 
+Here our test application and database are deleted. We do this for this demonstration for resource considerations but it is common for enterprise tool chains to leave their testing environment up 24/7.
+
 ### Push to Production using Active Deploy service + Appscan
+
+
