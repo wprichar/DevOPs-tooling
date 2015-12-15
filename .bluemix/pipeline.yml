@@ -151,10 +151,10 @@ stages:
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
       application: ${CF_APP
-    ACCESS: 16e43fd3-d87a-4c44-8a36-d38b6202a319
+    ACCESS: ${SAUCE_KEY}
     DL_ASSETS: 'true'
     SELECT_CMD: custom
-    USER_ID: wprichar
+    USER_ID: ${SAUCE_USER}
     COMMAND: |-
       #!/bin/bash
       if [ -z "$url" ]
