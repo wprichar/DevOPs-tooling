@@ -144,24 +144,19 @@ stages:
       \   echo ${url}\nfi \n"
   - name: Selenium test
     type: tester
+    extension_id: ibm.devops.services.pipeline.saucelabs
     target:
-      url: ${CF_TARGET_URL}
-      organization: ${CF_ORGANIZATION}
-      space: ${CF_SPACE}
-      application: ${CF_APP}
-    ACCESS: ${SAUCE_KEY}
+      url: https://api.ng.bluemix.net
+      organization: ank@us.ibm.com
+      space: dev
+    ACCESS: asdasdasdasd
     DL_ASSETS: 'true'
     SELECT_CMD: custom
-    USER_ID: ${SAUCE_USER}
+    USER_ID: wprichar
     COMMAND: |-
       #!/bin/bash
-      if [ -z "$url" ]
-      then
-        echo "no url environment variable found... assuming first time deploy ... skipping"
-      else
-        npm install
-        npm test
-      fi
+      npm install
+      npm test
   - name: Mocha test. Check database for data.
     type: tester
     script: |-
