@@ -123,7 +123,7 @@ In this tile, we perform our performance testing with Taurus and Blazemeter. You
 
 ### SauceLabs selenium test with database check
 
-In this stage a selenium test is executed on the front end to send a message to the cloudant database using **Sauce Labs**. After that, a mocha test is run to check there is a value in the newly created test database. The Sauce Labs artifacts are uploaded to the **ARTIFACTS** tab in ** View logs and history ** . The Mocha test results are written to junit-xml and you can see them in the **TEST** tab in ** View logs and history **. You find the scripts in test/sauce in the root directory for your DevOPs service.
+In this stage a selenium test is executed on the front end to send a message to the cloudant database using **Sauce Labs**. After that, a mocha test is run to check there is a value in the newly created test database. The Sauce Labs artifacts are uploaded to the **ARTIFACTS** tab in **View logs and history** . The Mocha test results are written to junit-xml and you can see them in the **TEST** tab in **View logs and history**. You find the scripts in test/sauce in the root directory for your DevOPs service.
 
 ### Delete testing environment
 
