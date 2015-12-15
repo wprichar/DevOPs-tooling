@@ -144,7 +144,6 @@ stages:
       \   echo ${url}\nfi \n"
   - name: Selenium test
     type: tester
-    extension_id: ibm.devops.services.pipeline.saucelabs
     target:
       url: ${CF_TARGET_URL}
       organization: ${CF_ORGANIZATION}
