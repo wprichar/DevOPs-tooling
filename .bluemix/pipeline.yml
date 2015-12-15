@@ -74,10 +74,10 @@ stages:
   - name: Deploy
     type: deployer
     target:
-      region_id: ibm:yp:us-south
-      organization: wprichar@us.ibm.com
-      space: dev
-      application: deOps-architecture
+      url: ${CF_TARGET_URL}
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}
     script: "output=`cf services`\nif [[ $(echo $output | grep \"BlueMessenger-autoscaling\"\
       ) = \"\" ]]\nthen\n  echo \"No BlueMessenger-autoscaling found in environment\
       \ ... assuming first time   deploy ... skipping test application deployment\"\
@@ -103,10 +103,10 @@ stages:
   - name: Check for test application
     type: deployer
     target:
-      region_id: ibm:yp:us-south
-      organization: wprichar@us.ibm.com
-      space: dev
-      application: deOps-architecture
+      url: ${CF_TARGET_URL}
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}
     script: "#!/bin/bash\nexport APP_NAME=\"${CF_APP}-test\" \n"
   - name: Test
     type: tester
@@ -134,12 +134,12 @@ stages:
   - name: Set env variable "url"
     type: deployer
     target:
-      region_id: ibm:yp:us-south
-      organization: wprichar@us.ibm.com
-      space: dev
-      application: deOps-architecture
+      url: ${CF_TARGET_URL}
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}
     script: "#!/bin/bash\noutput=`cf apps`\nif [[ $(echo $output | grep \"${CF_APP}-test\"\
-      ) = \"\" ]]\nthen\n  echo \"Test application found of BlueMessenger ... assuming\
+      ) = \"\" ]]\nthen\n  echo \"No test application found of BlueMessenger ... assuming\
       \ first deploy ... skipping test\"\nelse\n   output=`cf env \"${CF_APP}-test\"\
       \ | grep url | grep bluemix.cloudant.com`\n   export url=${output:13:${#output}-15}\n\
       \   echo ${url}\nfi \n"
@@ -191,12 +191,12 @@ stages:
   - name: Deploy
     type: deployer
     target:
-      region_id: ibm:yp:us-south
-      organization: wprichar@us.ibm.com
-      space: dev
-      application: deOps-architecture
+      url: ${CF_TARGET_URL}
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}
     script: "#!/bin/bash\noutput=`cf apps`\nif [[ $(echo $output | grep \"${CF_APP}-test\"\
-      ) = \"\" ]]\nthen\n  echo \"Test application found of BlueMessenger ... assuming\
+      ) = \"\" ]]\nthen\n  echo \"No test application found of BlueMessenger ... assuming\
       \ first deploy ... skipping test\"\nelse\n   cf stop \"${CF_APP}-test\"\n  \
       \ cf delete \"${CF_APP}-test\" -f\n   cf delete-service \"BlueMessenger-cloudant-test\"\
       \ -f\nfi \n\n"
@@ -247,10 +247,10 @@ stages:
   - name: Deploy Successor
     type: deployer
     target:
-      region_id: ibm:yp:us-south
-      organization: wprichar@us.ibm.com
-      space: dev
-      application: deOps-architecture
+      url: ${CF_TARGET_URL}
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}
     script: "#!/bin/bash\n#!/bin/bash\noutput=`cf services`\nexport ROUTE_HOSTNAME=${CF_APP}\n\
       if [[ $(echo $output | grep \"BlueMessenger-cloudant\") = \"\" ]]\nthen\n\n\
       \  echo \"No instance of BlueMessenger-cloudant found ... assuming first deploy\
@@ -273,10 +273,10 @@ stages:
   - name: Begin AD, Rampup
     type: deployer
     target:
-      region_id: ibm:yp:us-south
-      organization: wprichar@us.ibm.com
-      space: dev
-      application: deOps-architecture
+      url: ${CF_TARGET_URL}
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}
     script: |-
       #!/bin/bash
 
@@ -357,10 +357,10 @@ stages:
   - name: Finish AD
     type: deployer
     target:
-      region_id: ibm:yp:us-south
-      organization: wprichar@us.ibm.com
-      space: dev
-      application: deOps-architecture
+      url: ${CF_TARGET_URL}
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}
     script: |-
       #!/bin/bash
 
@@ -424,10 +424,10 @@ stages:
   - name: App Scan
     type: deployer
     target:
-      region_id: ibm:yp:us-south
-      organization: wprichar@us.ibm.com
-      space: dev
-      application: deOps-architecture
+      url: ${CF_TARGET_URL}
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}
     script: |-
       #!/bin/bash
       #!/bin/bash
