@@ -39,7 +39,8 @@
         "grunt-simple-mocha": "latest",
         "mocha-jenkins-reporter": "^0.1.9",
         "mocha-junit-reporter": "^1.6.1",
-        "xunit-file": "~0.0.7"
+        "xunit-file": "~0.0.7",
+        "request": "*"
 	},
 	"repository": {}
 }
