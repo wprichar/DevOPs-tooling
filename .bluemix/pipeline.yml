@@ -250,25 +250,30 @@ stages:
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
       application: ${CF_APP}
-    script: "#!/bin/bash\n#!/bin/bash\noutput=`cf services`\nexport ROUTE_HOSTNAME=${CF_APP}\n\
+  script: "#!/bin/bash\n#!/bin/bash\noutput=`cf services`\nexport ROUTE_HOSTNAME=${CF_APP}\n\
       if [[ $(echo $output | grep \"BlueMessenger-cloudant\") = \"\" ]]\nthen\n\n\
       \  echo \"No instance of BlueMessenger-cloudant found ... assuming first deploy\
       \ ... skipping Active deploy\"\n\n    cf create-service cloudantNoSQLDB Shared\
       \ BlueMessenger-cloudant\n    cf create-service Auto-Scaling free BlueMessenger-autoscaling\n\
       \    cf create-service newrelic standard BlueMessenger-NewRelic\n    cf create-service\
       \ \"AppScan Dynamic Analyzer\" standard BlueMessenger-appscan\n    cf push \"\
-      ${CF_APP}\" -i 1 -d mybluemix.net -n ${CF_APP} --no-start\n    cf bind-service\
+      ${CF_APP}\" -i 1 -d mybluemix.net -n ${CF_APP} --no-start\n    monitoring=`cf\
+      \ services | grep MonitoringAndAnalytics | awk '{print $1}'`\n    if [ -z \"\
+      $monitoring\" ]\n    then\n    cf create-service MonitoringAndAnalytics Free\
+      \ BlueMessenger-monitoring\n    cf bind-service \"$CF_APP}\" BlueMessenger-monitoring\n\
+      \    else\n    cf bind-service \"${CF_APP}\" $monitoring\n    fi\n    cf bind-service\
       \ \"${CF_APP}\" BlueMessenger-cloudant\n    cf bind-service \"${CF_APP}\" BlueMessenger-autoscaling\n\
       \    cf bind-service \"${CF_APP}\" BlueMessenger-NewRelic\n    cf bind-service\
       \ \"${CF_APP}\" BlueMessenger-appscan\n    cf start \"${CF_APP}\"\n   \n\nelse\n\
       \ \n    export firstDeploy=false\n    env\n\n    UPDATE_ID=${BUILD_NUMBER}\n\
-      \    echo \"update id: ${UPDATE_ID}\"\n    export UPDATE_ID\n\n    cf push \"\
+      \    echo \"update id: ${UPDATE_ID}\"\n    export UPDATE_ID\n    monitoring=`cf\
+      \ services | grep MonitoringAndAnalytics | awk '{print $1}'`\n    cf push \"\
       ${CF_APP}_${BUILD_NUMBER}\" --no-route -i 1 -s cflinuxfs2 --no-start\n    cf\
-      \ bind-service \"${CF_APP}_${BUILD_NUMBER}\" BlueMessenger-cloudant\n    cf\
-      \ bind-service \"${CF_APP}_${BUILD_NUMBER}\" BlueMessenger-autoscaling\n   \
-      \ cf bind-service \"${CF_APP}_${BUILD_NUMBER}\" BlueMessenger-NewRelic\n   \
-      \ cf bind-service \"${CF_APP}_${BUILD_NUMBER}\" BlueMessenger-appscan\n    cf\
-      \ start \"${CF_APP}_${BUILD_NUMBER}\"\n\nfi "
+      \ bind-service \"{CF_APP}\" $monitoring\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
+      \ BlueMessenger-cloudant\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
+      \ BlueMessenger-autoscaling\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
+      \ BlueMessenger-NewRelic\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
+      \ BlueMessenger-appscan\n    cf start \"${CF_APP}_${BUILD_NUMBER}\"\n\nfi "
   - name: Begin AD, Rampup
     type: deployer
     target:
