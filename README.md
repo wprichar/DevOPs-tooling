@@ -31,9 +31,11 @@ Once you fill in the needed fields click **DEPLOY**. This will start the deploym
 3. Select **BUILD & DEPLOY**
 4. You can monitor the stages by selecting **View logs and history**.
 
-## Retrieve Slack webhook
+Once the deployment finishes, we will have an instance of **Blue-Messenger** in our Bluemix Dashboard. Now we will do the steps to make our pipeline ready for continuous integration.
+
+## Retrieve Slack incoming webhook
    
-In our first stage of the pipeline we add the webhook url to give more detailed information on the changes commited in GIT. We need to reterieve the webhook and put it in the stage as an environment variable. 
+In our **build stage** of the pipeline we add the incoming webhook url to give more detailed information on the changes commited in GIT. We need to reterieve the webhook and put it in the stage as an environment variable. 
 
 
 1. Navigate to https://my.slack.com/services/new/incoming-webhook/ to add a new webhook
@@ -123,7 +125,7 @@ In this tile, we perform our performance testing with Taurus and Blazemeter. You
 
 ### SauceLabs selenium test with database check
 
-In this stage a selenium test is executed on the front end to send a message to the cloudant database using **Sauce Labs**. After that, a mocha test is run to check there is a value in the newly created test database. The Sauce Labs artifacts are uploaded to the **ARTIFACTS** tab in **View logs and history** . The Mocha test results are written to junit-xml and you can see them in the **TEST** tab in **View logs and history**. You find the scripts in test/sauce in the root directory for your DevOPs service.
+In this stage a selenium test is executed on the front end to send a message to the Cloudant test database using **Sauce Labs**. After that, a mocha test is run to check there is a value in the newly created test database. The Sauce Labs artifacts are uploaded to the **ARTIFACTS** tab in **View logs and history** . The Mocha test results are written to junit-xml and you can see them in the **TEST** tab in **View logs and history**. You can find the scripts ran in this stage in the test/sauce folder in your root directory of DevOPs services.
 
 ### Delete testing environment
 
