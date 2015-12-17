@@ -6,7 +6,7 @@ The Bluemix Pipeline has been created and applied to the Architecture Center's a
 
 ## Introduction
 
-This pipeline demonstrates a contious integration pipeline. When changes are pushed in **GIT** to the master branch, **linting**, **unit testing**, **deployment to a test environment**, **performance testing**, and **behavioral testing** is initiated and validated before a zero-downtime deployment to production.
+This pipeline demonstrates contious integration ultilizing Bluemix DevOPs features. When changes are pushed in **GIT** to the master branch of our project, **linting**, **unit testing**, **deployment to a test environment**, **performance testing**, and **behavioral testing** is initiated and validated before a zero-downtime deployment to production.
 Logging happens throughout the pipeline's cycle through Bluemix's slack intergration. The services **NewRelic**, **Google Analytics**, and **Monitoring and Analytics** are also used to give real time data on status of the web application. **Auto-scaling** is used to handled scalability.
 
 ## Sign up for / Log into Bluemix and DevOps
