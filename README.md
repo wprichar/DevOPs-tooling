@@ -75,7 +75,7 @@ Once you have obtained a **Tracking ID** it needs to be put into the application
 
 Do not commit and push to master yet. We will first make a noticeable change to the application to simulate a new version update and then commit to master, which will kick off our pipeline. 
 
-## Make change to Application and Commit changes to master
+## Make change to application and commit changes to master
 
 Now we need to create a change to the source code and commit the changes to the master branch. Once we do this, it will kick off the pipeline and we can monitor each deployment stage from there.
 
