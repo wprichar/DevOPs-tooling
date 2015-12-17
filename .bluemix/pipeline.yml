@@ -270,7 +270,7 @@ stages:
       \    echo \"update id: ${UPDATE_ID}\"\n    export UPDATE_ID\n    monitoring=`cf\
       \ services | grep MonitoringAndAnalytics | awk '{print $1}'`\n    cf push \"\
       ${CF_APP}_${BUILD_NUMBER}\" --no-route -i 1 -s cflinuxfs2 --no-start\n    cf\
-      \ bind-service \"${CF_APP}\" $monitoring\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
+      \ bind-service \"${CF_APP}_${BUILD_NUMBER}\" $monitoring\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
       \ BlueMessenger-cloudant\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
       \ BlueMessenger-autoscaling\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
       \ BlueMessenger-NewRelic\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
