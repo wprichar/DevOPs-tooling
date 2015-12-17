@@ -151,7 +151,7 @@ This pipeline provides three different sources of real time data of our Blue Mes
 
 ### Track and Plan 
 
-Blue provides a planning tool in DevOPs services. Select **TRACK & PLAN** at the top of your project.
+Blue provides a planning tool in DevOPs services. Select **TRACK & PLAN** at the top of your project in DevOPs services to utilize this feature.
 
 for more see the docs -
 
