@@ -119,8 +119,9 @@ stages:
       \ -o modules.blazemeter.token=${token} \n\n fi\n"
 - name: 'SauceLabs selenium test with database check '
   inputs:
-  - type: git
-    branch: master
+  - type: job
+    stage: Build Stage
+    job: npm install
   triggers:
   - type: stage
   properties:
@@ -130,6 +131,9 @@ stages:
   - name: XUNIT_FILE
     value: test/sauce/output/xunit.xml
     type: text
+  - name: APP_NAME
+    value: ''
+    type: text
   jobs:
   - name: Set env variable "url"
     type: deployer
@@ -138,11 +142,11 @@ stages:
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
       application: ${CF_APP}
-    script: "#!/bin/bash\noutput=`cf apps`\nif [[ $(echo $output | grep \"${CF_APP}-test\"\
-      ) = \"\" ]]\nthen\n  echo \"No test application found of BlueMessenger ... assuming\
-      \ first deploy ... skipping test\"\nelse\n   output=`cf env \"${CF_APP}-test\"\
-      \ | grep url | grep bluemix.cloudant.com`\n   export url=${output:13:${#output}-15}\n\
-      \   echo ${url}\nfi \n"
+    script: "#!/bin/bash\nexport APP_NAME=${CF_APP}\noutput=`cf apps`\nif [[ $(echo\
+      \ $output | grep \"${CF_APP}-test\") = \"\" ]]\nthen\n  echo \"No test application\
+      \ found of BlueMessenger ... assuming first deploy ... skipping test\"\nelse\n\
+      \   output=`cf env \"${CF_APP}-test\" | grep url | grep bluemix.cloudant.com`\n\
+      \   export url=${output:13:${#output}-15}\n   echo ${url}\nfi \n"
   - name: Selenium test
     type: tester
     extension_id: ibm.devops.services.pipeline.saucelabs
@@ -150,7 +154,7 @@ stages:
       url: ${CF_TARGET_URL}
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
-      application: ${CF_APP
+      application: ${CF_APP}
     ACCESS: ${SAUCE_KEY}
     DL_ASSETS: 'true'
     SELECT_CMD: custom
@@ -161,7 +165,6 @@ stages:
       then
         echo "no url ... assuming first time deploy ... skipping"
       else
-        npm install
         npm test
       fi
   - name: Mocha test. Check database for data.
@@ -173,10 +176,6 @@ stages:
       then
         echo "no url ... assuming first time deploy ... skipping"
       else
-        npm install mocha
-        npm install chai
-        npm install request
-        npm install xunit-file
         ./node_modules/.bin/mocha --reporter xunit-file ./test/sauce/mocha-DBtest.js
       fi
     enable_tests: true
