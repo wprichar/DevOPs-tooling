@@ -45,7 +45,7 @@ In our **build stage** of the pipeline we add the incoming webhook url to give m
 5. In the first tile **Build Stage** click the gear icon to **configure**. Select **ENVIRONMENT PROPERTIES** tab and in the **Value** part of the **SLACK_WEBHOOK_PATH** paste your webhook from clipboard.
 6. Click **SAVE**
 
-## Retrive Blazemeter token 
+## Retrieve Blazemeter token 
  
  The pipeline uses **Blazemeter** for it's performance testing. We need to get the API Token from **Blazemeter**, by signing up for a free trial, and put it into our pipeline. 
  
@@ -117,7 +117,7 @@ The mocha test done is a simple test that just creates a server and waits for ca
 
 ### Push to test
 
-This stage pushes the new version of BlueMessenger to a Cloud Foundry application with the test extension to be used for testing. A test cloudant database is also create at this stage to properly demonstrate an enterprise tool chain where the production database is not linked till push to production happens. 
+This stage pushes the new version of Blue Messenger to a Cloud Foundry application with the test extension to be used for testing. A test cloudant database is also create at this stage to properly demonstrate an enterprise tool chain where the production database is not linked till push to production happens. 
 
 ### Performance test with Blazemeter
 
