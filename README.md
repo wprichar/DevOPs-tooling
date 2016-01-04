@@ -6,8 +6,8 @@ The Bluemix Pipeline has been created and applied to the Architecture Center's a
 
 ## Introduction
 
-This pipeline demonstrates contious integration ultilizing Bluemix DevOPs features. When changes are pushed in **GIT** to the master branch of our project, **linting**, **unit testing**, **deployment to a test environment**, **performance testing**, and **behavioral testing** is initiated and validated before a zero-downtime deployment to production.
-Logging happens throughout the pipeline's cycle through Bluemix's slack intergration. The services **NewRelic**, **Google Analytics**, and **Monitoring and Analytics** are also used to give real time data on status of the web application. **Auto-scaling** is used to handled scalability.
+This pipeline demonstrates continuous integration utilizing Bluemix DevOPs features. When changes are pushed in **GIT** to the master branch of our project, **linting**, **unit testing**, **deployment to a test environment**, **performance testing**, and **behavioral testing** is initiated and validated before a zero-downtime deployment to production.
+Logging happens throughout the pipeline's cycle through Bluemix's slack integration. The services **NewRelic**, **Google Analytics**, and **Monitoring and Analytics** are also used to give real time data on status of the web application. **Auto-scaling** is used to handle scalability.
 
 ## Sign up for / Log into Bluemix and DevOps
 
@@ -17,7 +17,7 @@ When you sign up, you'll create IBM ID, create an alias, and register with Bluem
 
 ## Deploy to Bluemix
 
-First we will sign up for **Slack** and **SauceLabs** that will be integrated into our pipeline. Select the **Deploy to Bluemix** button below. In the deployment screen that comes up, you will see the intergration sections for **Slack** and **SAUCE LABS**. Select **Create an account** on both to retrieve you needed information for the fields requested. You will need to create a channel on your slack that will be used for contious status messages of your deployment pipeline.
+First we will sign up for **Slack** and **SauceLabs** that will be integrated into our pipeline. Select the **Deploy to Bluemix** button below. In the deployment screen that comes up, you will see the integration sections for **Slack** and **SAUCE LABS**. Select **Create an account** on both to retrieve you needed information for the fields requested. You will need to create a channel on your slack that will be used for continuous status messages of your deployment pipeline.
 
  [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/wprichar/DevOPs-tooling.git)
  
@@ -35,7 +35,7 @@ Once the deployment finishes, we will have an instance of **Blue-Messenger** in 
 
 ## Retrieve Slack incoming webhook
    
-In our **build stage** of the pipeline we add the incoming webhook url to give more detailed information on the changes commited in GIT. We need to reterieve the webhook and put it in the stage as an environment variable. 
+In our **build stage** of the pipeline we add the incoming webhook url to give more detailed information on the changes committed in GIT. We need to retrieve the webhook and put it in the stage as an environment variable. 
 
 
 1. Navigate to https://my.slack.com/services/new/incoming-webhook/ to add a new webhook
@@ -56,7 +56,7 @@ In our **build stage** of the pipeline we add the incoming webhook url to give m
  5. Copy **Your Current Key** to clipboard
  6. Return to your project's pipeline in Bluemix DevOps Services
  7. Click gear icon on the **Performance test with Blazemeter** to configure
- 8. Select **ENVIORNMENT PROPERTIES** at top 
+ 8. Select **ENVIRONMENT PROPERTIES** at top 
  9. For the **token** field paste your blazemeter **API KEY** into the value
  10. Click **SAVE**
  
@@ -64,11 +64,11 @@ You pipeline is now set up to use Taurus with Blazemeter to do performance testi
 
 ## Sign up for Google Analytics and put API into the source code
 
-Google Analytics has been intergrated into this version of Blue Messenger. To link your own google analytics to your Blue Messenger you will need to retrieve a **Tracking ID**. To get one visit - 
+Google Analytics has been integrated into this version of Blue Messenger. To link your own google analytics to your Blue Messenger you will need to retrieve a **Tracking ID**. To get one visit - 
 
 https://ga-dev-tools.appspot.com/account-explorer/
 
-Once you have obtained a **Tracking ID** it needs to be put into the applications source code. 
+Once you have obtained a **Tracking ID** it needs to be put into the application's source code. 
 
 1. Return to your project in Bluemix DevOps Services and click EDIT CODE at top right of the page.
 2. In the public/index.html file, in the **script** block with the **GoogleAnalyticsObject** in it replace the **replace me** in the first **ga()** field with your **Tracking ID**
@@ -93,9 +93,9 @@ Now we need to create a change to the source code and commit the changes to the 
 
 This change to the master branch will kick of our deployment pipeline. Monitor it in **BUILD AND DEPLOY**. Read below for descriptions about each step the application goes through to get to production.
 
-## Monitor pipeline for continous deployment education
+## Monitor pipeline for continuous deployment education
 
-At this point in the guide we have started the pipeline and we will now review each stage and how it demonstrates DevOPs and contious integration. 
+At this point in the guide we have started the pipeline and we will now review each stage and how it demonstrates DevOPs and continuous integration. 
 
 ### Build Stage
 
@@ -113,7 +113,7 @@ Here we perform our syntax checking with jslint and csslint with the npm modules
 You can set up configuration for the jslint by editing the .jshintrc in root directly of your DevOPs services. For more examples see -
 http://jshint.com/docs/
 
-The mocha test done is a simple test that just creates a server and waits for callback that it was successfull. We will have behavioral driven tests in our testing environment.
+The mocha test done is a simple test that just creates a server and waits for callback that it was successful. We will have behavioral driven tests in our testing environment.
 
 ### Push to test
 
@@ -121,7 +121,7 @@ This stage pushes the new version of BlueMessenger to a Cloud Foundry applicatio
 
 ### Performance test with Blazemeter
 
-In this tile, we perform our performance testing with Taurus and Blazemeter. You can monitor the testing pass fail status in **View logs and history** . Once the stage finishes it will provide your a blaze meter hyperlink you can click to see graphical representations of your test results on blaze meter's website. The scripts that is sent to Blazemeter for perfomance testing is **performanceTest.yml** in root directory of DevOPs services. In this configuration file you set the pass/fail thresholds in **criteria** under **reporting**. You would change the milli seconds and duration of time in avg-rt ( average response time ) or the percentage of fails (fail) with the duration. 
+In this tile, we perform our performance testing with Taurus and Blazemeter. You can monitor the testing pass fail status in **View logs and history**. Once the stage finishes it will provide you a hyperlink you can click to see a graphical representations of your test results on BlazeMeter's website. The scripts that is sent to Blazemeter for performance testing is **performanceTest.yml** in the root directory of DevOPs services. In this configuration file you set the pass/fail thresholds in **criteria** under **reporting**. You would change the milliseconds and duration of time in avg-rt ( average response time ) or the percentage of fails (fail) with the duration. 
 
 ### SauceLabs selenium test with database check
 
@@ -137,7 +137,7 @@ At this point our pipeline has gone through testing and the testing environment 
 
 https://www.ng.bluemix.net/docs/services/ActiveDeploy/index.html
 
-After the deployment is done the last **JOB** done is a Rest API call to the binded service **App Scan Dynamic Analyzer**, which provideds us a security scan of our production application. After the API call you can monitor the progress of the scan by click on the service in your application's dashboard. For more information on the **App Scan Dynamic Analyzer** see the bluemix doc - 
+After the deployment is done the last **JOB** done is a Rest API call to the binded service **App Scan Dynamic Analyzer**, which provides a security scan of our production application. After the API call you can monitor the progress of the scan by click on the service in your application's dashboard. For more information on the **App Scan Dynamic Analyzer** see the bluemix doc - 
 
 https://www.ng.bluemix.net/docs/#services/AppScanDynamicAnalyzer/index.html#AppScanDynamicAnalyzer
 
@@ -146,7 +146,7 @@ https://www.ng.bluemix.net/docs/#services/AppScanDynamicAnalyzer/index.html#AppS
 This pipeline provides three different sources of real time data of our Blue Messenger in production. 
 
 - Google Analytics - a link to your data is found here - https://ga-dev-tools.appspot.com/account-explorer/
-- New Relic - load the dashboard from by selecting **Bluemessenger-NewRelic** in you application's dashboard
+- New Relic - load the dashboard from by selecting **Bluemessenger-NewRelic** in your application's dashboard
 - Monitoring & Analytics - select the **Monitoring & Analytics** instance in your application's dashboard
 
 ### Track and Plan 
