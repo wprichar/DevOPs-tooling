@@ -6,8 +6,8 @@ The Bluemix Pipeline has been created and applied to the Architecture Center's a
 
 ## Introduction
 
-This pipeline demonstrates continuous integration utilizing Bluemix DevOPs features. When changes are pushed in **GIT** to the master branch of our project, **linting**, **unit testing**, **deployment to a test environment**, **performance testing**, and **behavioral testing** is initiated and validated before a zero-downtime deployment to production.
-Logging happens throughout the pipeline's cycle through Bluemix's slack integration. The services **NewRelic**, **Google Analytics**, and **Monitoring and Analytics** are also used to give real time data on status of the web application. **Auto-scaling** is used to handle scalability.
+This pipeline demonstrates continuous integration utilizing Bluemix DevOPs features. When changes are pushed in **GIT** to the master branch of our project, **linting**, **unit testing**, **deployment to a test environment**, **performance testing**, and **behavioral testing** are initiated and validated before a zero-downtime deployment to production.
+Logging happens throughout the pipeline's cycle through Bluemix's slack integration. The services **NewRelic**, **Google Analytics**, and **Monitoring and Analytics** are also used to give real time data on the status of the web application. **Auto-scaling** is used to handle scalability.
 
 ## Sign up for / Log into Bluemix and DevOps
 
@@ -17,7 +17,7 @@ When you sign up, you'll create IBM ID, create an alias, and register with Bluem
 
 ## Deploy to Bluemix
 
-First we will sign up for **Slack** and **SauceLabs** that will be integrated into our pipeline. Select the **Deploy to Bluemix** button below. In the deployment screen that comes up, you will see the integration sections for **Slack** and **SAUCE LABS**. Select **Create an account** on both to retrieve you needed information for the fields requested. You will need to create a channel on your slack that will be used for continuous status messages of your deployment pipeline.
+First, we will sign up for **Slack** and **SauceLabs**, they will be integrated into our pipeline. Select the **Deploy to Bluemix** button below. In the deployment screen that comes up, you will see the integration sections for **Slack** and **SAUCE LABS**. Select **Create an account** on both to retrieve the necessary information for the fields requested. You will need to create a channel on your slack that will be used for continuous status messages of your deployment pipeline.
 
  [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/wprichar/DevOPs-tooling.git)
  
@@ -31,11 +31,11 @@ Once you fill in the needed fields click **DEPLOY**. This will start the deploym
 3. Select **BUILD & DEPLOY**
 4. You can monitor the stages by selecting **View logs and history**.
 
-Once the deployment finishes, we will have an instance of **Blue-Messenger** in our Bluemix Dashboard. Now we will do the steps to make our pipeline ready for continuous integration.
+Once the deployment finishes, you will have an instance of **Blue-Messenger** in our Bluemix Dashboard. Now we will do the steps to make our pipeline ready for continuous integration.
 
 ## Retrieve Slack incoming webhook
    
-In our **build stage** of the pipeline we add the incoming webhook url to give more detailed information on the changes committed in GIT. We need to retrieve the webhook and put it in the stage as an environment variable. 
+In your **build stage** of the pipeline, add the incoming webhook url to give more detailed information on the changes committed in GIT. You need to retrieve the webhook and put it in the stage as an environment variable. 
 
 
 1. Navigate to https://my.slack.com/services/new/incoming-webhook/ to add a new webhook
