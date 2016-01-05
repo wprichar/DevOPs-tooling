@@ -17,7 +17,7 @@ When you sign up, you'll create IBM ID, create an alias, and register with Bluem
 
 ## Deploy to Bluemix
 
-First, we will sign up for **Slack** and **SauceLabs**, they will be integrated into our pipeline. Select the **Deploy to Bluemix** button below. In the deployment screen that comes up, you will see the integration sections for **Slack** and **SAUCE LABS**. Select **Create an account** on both to retrieve the necessary information for the fields requested. You will need to create a channel on your slack that will be used for continuous status messages of your deployment pipeline.
+First, we will sign up for **Slack** and **SauceLabs**, they will be integrated into our pipeline. Select the **Deploy to Bluemix** button below. In the deployment screen that comes up, you will see the integration sections for **Slack** and **SAUCE LABS**. Select **Create an account** on both to retrieve the necessary information for the fields requested. You will need to create a channel on your slack that will be used for continuous status messages of your deployment pipeline. To recieve a **Slack** api key see - https://api.slack.com/web#authentication
 
  [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/wprichar/DevOPs-tooling.git)
  
@@ -66,7 +66,9 @@ You pipeline is now set up to use Taurus with Blazemeter to do performance testi
 
 Google Analytics has been integrated into this version of Blue Messenger. To link your own google analytics to your Blue Messenger you will need to retrieve a **Tracking ID**. To get one visit - 
 
-https://ga-dev-tools.appspot.com/account-explorer/
+https://www.google.com/analytics/web/
+
+Select the **ADMIN** at the top to manage your **ACCOUNTS**, **PROPERTIES**, and **TRACKING INFO**
 
 Once you have obtained a **Tracking ID** it needs to be put into the application's source code. 
 
