@@ -1,6 +1,6 @@
 # Workload - DevOps Tooling
 
-###DevOps continuous integration applied to Blue Messenger
+### DevOps continuous integration applied to Blue Messenger
 
 The Bluemix pipeline has been created and applied to the Architecture Center's [Blue Messenger](https://hub.jazz.net/project/cfsworkload/blue-messenger/overview) app.
 
@@ -20,12 +20,13 @@ When you sign up, you'll create IBM ID, create an alias, and register with Bluem
 When you deploy the pipeline to Bluemix, you'll also sign up for **Slack**, a collaborative messaging tool, and **SauceLabs**, which provides automated testing.
 
 1. Select the **Deploy to Bluemix** button below. In the deployment screen that comes up, you will see the integration sections for **Slack** and **SAUCE LABS**.
-2. Select **Create an account** on both to retrieve the necessary information for the fields requested.
-3. Create a channel in Slack to view continuous status messages of your deployment pipeline.
 
   [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/wprichar/DevOPs-tooling.git)
 
-4. Once you fill in the necessary fields, click **DEPLOY**. This will start the deployment of **Blue Messenger** and the static services used with the application.
+2. Select **Create an account** on both to retrieve the necessary information for the fields requested.
+3. Create a channel in Slack to view continuous status messages of your pipeline.
+4. See https://api.slack.com/web#authentication to get a Slack API key.
+5. Once you fill in the necessary fields, click **DEPLOY**. This will start the deployment of **Blue Messenger** and the static services used with the application.
 
 ## Monitor deployment
 
@@ -35,17 +36,17 @@ After the pipeline has been configured, you can monitor the deployment by doing 
 3. Click **BUILD & DEPLOY**.
 4. Select **View logs and history** to monitor the deployment stages.
 
-Once the deployment finishes, you will have an instance of the **Blue Messenger** app in your Bluemix Dashboard. Now you'll set up the deployment pipeline for continuous integration.
+Once the deployment finishes, you will have an instance of the **Blue Messenger** app in your Bluemix Dashboard. Now you'll set up the pipeline for continuous integration.
 
 ## Set up Slack integration
 
-In the Build stage of the deployment pipeline, add the Slack incoming webhook URL to give more detailed information on the changes committed in Git. You need to retrieve the webhook and put it in the stage as an environment variable.
+In the Build stage of the pipeline, add the Slack incoming webhook URL to give more detailed information on the changes committed in Git. You need to retrieve the webhook and put it in the stage as an environment variable.
 
 
 1. Navigate to https://my.slack.com/services/new/incoming-webhook/ to add a new webhook.
 2. Enter the channel name you specified during the Deploy to Bluemix process and click **Add Incoming WebHooks Integration**.
 3. Copy the **Webhook URL**.
-4. Return to your project in DevOps Services and click **BUILD AND DEPLOY**. This will take you to your project's deployment pipeline.
+4. Return to your project in DevOps Services and click **BUILD AND DEPLOY**. This will take you to your project's pipeline.
 5. In the first tile, **Build Stage**  click the gear icon to access configuration settings.
 6. Select the **ENVIRONMENT PROPERTIES** tab.
 7. In the **Value** field of the **SLACK_WEBHOOK_PATH**, enter your webhook URL.
@@ -71,16 +72,17 @@ Your pipeline is now set up to use Taurus with Blazemeter to do performance test
 
 Google Analytics has been integrated into this version of the Blue Messenger app. To link your own Google Analytics to the app, follow the steps below.
 
-1. Get a **Tracking ID** from https://ga-dev-tools.appspot.com/account-explorer. Once you get a tracking ID, put it into the application's source code.
-2. Return to your project in DevOps Services and click **EDIT CODE** at top right of the page.
-3. Select the **public/index.html** file.
-4. In the `script` block with the `GoogleAnalyticsObject`, enter your tracking ID where it says `replace me` in the first `ga() field`.
+1. Get a **Tracking ID** from https://www.google.com/analytics/web/.
+2. Select the **ADMIN** at the top to manage your accounts, properties, and tracking info. Once you get a tracking ID, put it into the application's source code.
+3. Return to your project in DevOps Services and click **EDIT CODE** at top right of the page.
+4. Select the **public/index.html** file.
+5. In the `script` block with the `GoogleAnalyticsObject`, enter your tracking ID where it says `replace me` in the first `ga() field`.
 
 Do not commit and push to master yet. You'll first make a visible change to the application to simulate a new version update and then commit to master, which will kick off our pipeline.
 
 ## Update app and start pipeline
 
-You'll change the source code of your app and commit the changes to the master branch. After doing this, the deployment pipeline will automatically kick off and you can monitor each deployment stage from there.
+You'll change the source code of your app and commit the changes to the master branch. After doing this, the pipeline will automatically kick off and you can monitor each deployment stage from there.
 
 1. Return to your project in DevOps Services and click **EDIT CODE** at top right of the page.
 2. Add the lines of code, found below, to the bottom of the **/public/stylesheets/style.css** file in your web IDE. This change will make the corners of the buttons pointed instead of curved.
@@ -94,7 +96,7 @@ You'll change the source code of your app and commit the changes to the master b
 5. Enter a commit message, select all files, and press **Commit**.
 6. Push the change to the master branch.
 
- Pushing code to the master branch will kick of your deployment pipeline. You can monitor the deployment under **BUILD AND DEPLOY**. For descriptions about each stage the app goes through to get to production, check out the **Monitor pipeline** section.
+ Pushing code to the master branch will kick off your pipeline. You can monitor the deployment under **BUILD AND DEPLOY**. For descriptions about each stage the app goes through to get to production, check out the **Monitor pipeline** section.
 
 ## Monitor pipeline
 
