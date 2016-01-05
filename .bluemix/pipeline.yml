@@ -261,7 +261,7 @@ stages:
       ${CF_APP}\" -i 1 -d mybluemix.net -n ${CF_APP} --no-start\n    monitoring=`cf\
       \ services | grep MonitoringAndAnalytics | awk '{print $1}'`\n    if [ -z \"\
       $monitoring\" ]\n    then\n    cf create-service MonitoringAndAnalytics Free\
-      \ BlueMessenger-monitoring\n    cf bind-service \"$CF_APP}\" BlueMessenger-monitoring\n\
+      \ BlueMessenger-monitoring\n    cf bind-service \"${CF_APP}\" BlueMessenger-monitoring\n\
       \    else\n    cf bind-service \"${CF_APP}\" $monitoring\n    fi\n    cf bind-service\
       \ \"${CF_APP}\" BlueMessenger-cloudant\n    cf bind-service \"${CF_APP}\" BlueMessenger-autoscaling\n\
       \    cf bind-service \"${CF_APP}\" BlueMessenger-NewRelic\n    cf bind-service\
