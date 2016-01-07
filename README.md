@@ -22,7 +22,6 @@ When you deploy the pipeline to Bluemix, you'll also sign up for **Slack**, a co
 1. Select the **Deploy to Bluemix** button below. In the deployment screen that comes up, you will see the integration sections for **Slack** and **Sauce Labs**.
 
   [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/wprichar/DevOPs-tooling.git)
-
 2. Select **Create an account** on both to retrieve the necessary information for the fields requested.
 3. Create a channel in Slack to view continuous status messages of your pipeline.
 4. See https://api.slack.com/web#authentication to get a Slack API key.
@@ -47,7 +46,7 @@ In the Build stage of the pipeline, add the Slack incoming webhook URL to give m
 2. Enter the channel name you specified during the Deploy to Bluemix process and click **Add Incoming WebHooks Integration**.
 3. Copy the **Webhook URL**.
 4. Return to your project in DevOps Services and click **BUILD AND DEPLOY**. This will take you to your project's pipeline.
-5. In the first tile, **Build Stage**,  click the gear icon to access configuration settings.
+5. In the first tile, **Build Stage**, click the gear icon to access configuration settings.
 6. Select the **ENVIRONMENT PROPERTIES** tab.
 7. In the **Value** field of the **SLACK_WEBHOOK_PATH**, enter your webhook URL.
 8. Click **SAVE**.
@@ -77,7 +76,7 @@ Google Analytics has been integrated into this version of the Blue Messenger app
 4. Select the **public/index.html** file.
 5. In the `script` block with the `GoogleAnalyticsObject`, enter your tracking ID where it says `replace me` in the first `ga() field`.
 
-Do not commit and push your changes to the master yet. You'll first make a visible change to the application to simulate a new version update and then commit to master, which will kick off the pipeline.
+Before you commit and push changes to the master, you'll first make a visible change to the application to simulate a new version update. This will kick off the pipeline.
 
 ## Update app and start pipeline
 
@@ -91,12 +90,12 @@ You'll change the source code of your app and commit the changes to the master b
        border-radius: 0;
    }
   ```
-3. Select **File** then **Save**.
+3. Select **File**, then **Save**.
 4. Click the **Git** icon in the left navigation menu to load your Git dashboard.
 5. Enter a commit message, select all files, and press **Commit**.
 6. Push the change to the master branch.
 
- Pushing code to the master branch will kick off your pipeline. You can monitor the deployment under **BUILD AND DEPLOY**. For descriptions about each stage the app goes through to get to production, check out the **About the pipeline** section.
+Pushing code to the master branch will kick off your pipeline. You can monitor the deployment under **BUILD AND DEPLOY**. For descriptions about each stage the app goes through to get to production, check out the **About the pipeline** section.
 
 ## About the pipeline
 
@@ -120,15 +119,15 @@ This stage pushes the new version of Blue Messenger to a Cloud Foundry app with 
 
 ### Performance test with Blazemeter
 
-In this tile, performance testing is completed with Taurus and Blazemeter. You can monitor the testing pass/fail status in **View logs and history**. Once the stage finishes, a link will load and you can view a graphical representation of your test results on the Blazemeter website. The scripts that are sent to Blazemeter for performance testing are in the **performanceTest.yml** file in the root directory of your DevOps Services project. In this configuration file, you set the pass/fail thresholds in **criteria** under **reporting**. You can change the milliseconds and duration of time in avg-rt (average response time) or the percentage of fails (fail) with the duration.
+In this tile, performance testing is completed with Taurus and Blazemeter. You can monitor the testing pass/fail status in **View logs and history**. Once the stage finishes, a link will load and you can view a graphical representation of your test results on the Blazemeter website. The scripts that are sent to Blazemeter for performance testing are in the **performanceTest.yml** file in the root directory of your DevOps Services project. In this configuration file, you set the pass/fail thresholds in **criteria** under **reporting**. You can change the milliseconds and duration of time in average response time (avg-rt) or the percentage of fails (fail) with the duration.
 
 ### Sauce Labs selenium test with database check
 
-In this stage, a selenium test is run on the front end to send a message to the Cloudant test database using Sauce Labs. After that, a mocha test is run to check that there is a value in the newly created test database. The Sauce Labs artifacts are uploaded to the **ARTIFACTS** tab in **View logs and history**. The mocha test results are written to junit-xml, which you can view in the **TEST** tab in **View logs and history**. You can view the scripts ran in this stage within the test/sauce folder in the root directory of your DevOps Services project.
+In this stage, a selenium test is run on the front end to send a message to the Cloudant test database using Sauce Labs. After that, a mocha test is run to check that there is a value in the newly created test database. The Sauce Labs artifacts are uploaded to the **ARTIFACTS** tab in **View logs and history**. The mocha test results are written to junit-xml, which you can view in the **TEST** tab in **View logs and history**. You can view the scripts run in this stage within the test/sauce folder in the root directory of your DevOps Services project.
 
 ### Delete testing environment
 
-In this stage, the test application and database are deleted. This is done to demonstration resource considerations, but it is common for enterprise toolchains to leave their testing environment up 24/7.
+In this stage, the test application and database are deleted. This is done to demonstrate resource considerations, but it is common for enterprise toolchains to leave their testing environment up 24/7.
 
 ### Push to production using Active Deploy service and Appscan
 
@@ -141,7 +140,7 @@ After the deployment is finished, the last job completed is a REST API call to t
 This pipeline provides three different sources of real-time data of your Blue Messenger in production.
 
 - Google Analytics: A link to your data is found at https://ga-dev-tools.appspot.com/account-explorer.
-- New Relic: Load the dashboard from by selecting **Bluemessenger-NewRelic** in your application dashboard.
+- New Relic: Load the dashboard by selecting **Bluemessenger-NewRelic** in your application dashboard.
 - Monitoring & Analytics: Select the **Monitoring & Analytics** instance in your application dashboard.
 
 ### Track and Plan
