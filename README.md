@@ -51,20 +51,20 @@ In the Build stage of the pipeline, add the Slack incoming webhook URL to give m
 7. In the **Value** field of the **SLACK_WEBHOOK_PATH**, enter your webhook URL.
 8. Click **SAVE**.
 
-## Set up Blazemeter integration
+## Set up BlazeMeter integration
 
-The pipeline uses Blazemeter for performance testing. After signing up for a free trial with Blazemeter, you'll get the API token and add it to your pipeline.
+The pipeline uses BlazeMeter for performance testing. After signing up for a free trial with BlazeMeter, you'll get the API token and add it to your pipeline.
 
  1. Navigate to https://www.blazemeter.com and select **START TESTING NOW**.
  2. Click the profile icon at the top right and select **API Key**.
  3. Copy the contents in the **Your Current Key** field.
  4. Return to your project's pipeline in DevOps Services.
- 5. In the **Performance test with Blazemeter** tile, click the gear icon to access configuration settings.
+ 5. In the **Performance test with BlazeMeter** tile, click the gear icon to access configuration settings.
  6. Select the **ENVIRONMENT PROPERTIES** tab.
- 7. In the **token** field, enter your Blazemeter API key.
+ 7. In the **token** field, enter your BlazeMeter API key.
  8. Click **SAVE**.
 
-Your pipeline is now set up to use Taurus with Blazemeter to do performance testing.
+Your pipeline is now set up to use Taurus with BlazeMeter to do performance testing.
 
 ## Set up Google Analytics
 
@@ -119,7 +119,7 @@ This stage pushes the new version of Blue Messenger to a Cloud Foundry app with 
 
 ### Performance test stage
 
-In the **Performance test with Blazemeter** tile, performance testing is completed with Taurus and Blazemeter. You can monitor the testing pass/fail status in **View logs and history**. Once the stage finishes, a link will load and you can view a graphical representation of your test results on the Blazemeter website. The scripts that are sent to Blazemeter for performance testing are in the **performanceTest.yml** file in the root directory of your DevOps Services project. In this configuration file, you set the pass/fail thresholds in **criteria** under **reporting**. You can change the milliseconds and duration of time in average response time (avg-rt) or the percentage of fails (fail) with the duration.
+In the **Performance test with BlazeMeter** tile, performance testing is completed with Taurus and BlazeMeter. You can monitor the testing pass/fail status in **View logs and history**. Once the stage finishes, a link will load and you can view a graphical representation of your test results on the BlazeMeter website. The scripts that are sent to BlazeMeter for performance testing are in the **performanceTest.yml** file in the root directory of your DevOps Services project. In this configuration file, you set the pass/fail thresholds in **criteria** under **reporting**. You can change the milliseconds and duration of time in average response time (avg-rt) or the percentage of fails (fail) with the duration.
 
 ### Selenium test stage
 
