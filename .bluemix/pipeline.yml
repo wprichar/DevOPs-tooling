@@ -452,4 +452,4 @@ stages:
       scanName=${CF_APP}_${BUILD_NUMBER}
       echo scanName
       echo $scanName
-      curl -i -H "Content-Type: application/json" -H "Authorization: Bearer ${token}" -d '{ "StartingUrl": "'"$url"'", "ScanType": "Production", "ScanName": "'"$scanName"'", "EnableMailNotification": true }' https://appscan.ibmcloud.com:443/api/v2/Scans/DynamicAnalyzer
+      # curl -i -H "Content-Type: application/json" -H "Authorization: Bearer ${token}" -d '{ "StartingUrl": "'"$url"'", "ScanType": "Production", "ScanName": "'"$scanName"'", "EnableMailNotification": true }' https://appscan.ibmcloud.com:443/api/v2/Scans/DynamicAnalyzer
