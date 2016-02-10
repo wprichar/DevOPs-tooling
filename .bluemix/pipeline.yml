@@ -4,6 +4,8 @@ stages:
   inputs:
   - type: git
     branch: master
+  triggers:
+  - type: commit
   properties:
   - name: SLACK_WEBHOOK_PATH
     value: ''
@@ -74,17 +76,17 @@ stages:
   - name: Deploy
     type: deployer
     target:
-      url: ${CF_TARGET_URL}
+url: ${CF_TARGET_URL}
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
-      application: ${CF_APP}
-    script: "output=`cf services`\nif [[ $(echo $output | grep \"BlueMessenger-autoscaling\"\
-      ) = \"\" ]]\nthen\n  echo \"No BlueMessenger-autoscaling found in environment\
-      \ ... assuming first time   deploy ... skipping test application deployment\"\
-      \n  \nelse\n\n    cf create-service cloudantNoSQLDB Shared BlueMessenger-Cloudant-test\n\
+      application: ${CF_APP} 
+    script: "output=`cf services`\nif [[ $(echo $output | grep \"${CF_APP}-autoscaling\"\
+      ) = \"\" ]]\nthen\n  echo \"No ${CF_APP}-autoscaling found in environment ...\
+      \ assuming first time   deploy ... skipping test application deployment\"\n\
+      \  \nelse\n\n    cf create-service cloudantNoSQLDB Shared ${CF_APP}-Cloudant-test\n\
       \    cf push \"${CF_APP}-test\" -n \"${CF_APP}-test\" --no-start\n    cf bind-service\
-      \ \"${CF_APP}-test\" BlueMessenger-Cloudant-test\n    cf bind-service \"${CF_APP}-test\"\
-      \ BlueMessenger-autoscaling\n    cf bind-service \"${CF_APP}-test\" BlueMessenger-NewRelic\n\
+      \ \"${CF_APP}-test\" ${CF_APP}-Cloudant-test\n    cf bind-service \"${CF_APP}-test\"\
+      \ ${CF_APP}-autoscaling\n    cf bind-service \"${CF_APP}-test\" ${CF_APP}-NewRelic\n\
       \    cf start \"${CF_APP}-test\"\n\nfi"
 - name: Performance test with Blazemeter
   inputs:
@@ -106,7 +108,7 @@ stages:
       url: ${CF_TARGET_URL}
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
-      application: ${CF_APP}
+      application: ${CF_APP} 
     script: "#!/bin/bash\nexport APP_NAME=\"${CF_APP}-test\" \n"
   - name: Test
     type: tester
@@ -141,7 +143,7 @@ stages:
       url: ${CF_TARGET_URL}
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
-      application: ${CF_APP}
+      application: ${CF_APP} 
     script: "#!/bin/bash\nexport APP_NAME=${CF_APP}\noutput=`cf apps`\nif [[ $(echo\
       \ $output | grep \"${CF_APP}-test\") = \"\" ]]\nthen\n  echo \"No test application\
       \ found of BlueMessenger ... assuming first deploy ... skipping test\"\nelse\n\
@@ -154,11 +156,11 @@ stages:
       url: ${CF_TARGET_URL}
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
-      application: ${CF_APP}
-    ACCESS: ${SAUCE_KEY}
+      application: ${CF_APP} 
+    ACCESS: asdasd
     DL_ASSETS: 'true'
     SELECT_CMD: custom
-    USER_ID: ${SAUCE_USER}
+    USER_ID: asdad
     COMMAND: |-
       #!/bin/bash
       if [ -z "$url" ]
@@ -194,11 +196,11 @@ stages:
       url: ${CF_TARGET_URL}
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
-      application: ${CF_APP}
+      application: ${CF_APP} 
     script: "#!/bin/bash\noutput=`cf apps`\nif [[ $(echo $output | grep \"${CF_APP}-test\"\
       ) = \"\" ]]\nthen\n  echo \"No test application found of BlueMessenger ... assuming\
       \ first deploy ... skipping test\"\nelse\n   cf stop \"${CF_APP}-test\"\n  \
-      \ cf delete \"${CF_APP}-test\" -f\n   cf delete-service \"BlueMessenger-cloudant-test\"\
+      \ cf delete \"${CF_APP}-test\" -f\n   cf delete-service \"${CF_APP}-cloudant-test\"\
       \ -f\nfi \n\n"
 - name: Push to Production using Active Deploy service
   inputs:
@@ -250,36 +252,35 @@ stages:
       url: ${CF_TARGET_URL}
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
-      application: ${CF_APP}
+      application: ${CF_APP} 
     script: "#!/bin/bash\n#!/bin/bash\noutput=`cf services`\nexport ROUTE_HOSTNAME=${CF_APP}\n\
-      if [[ $(echo $output | grep \"BlueMessenger-cloudant\") = \"\" ]]\nthen\n\n\
-      \  echo \"No instance of BlueMessenger-cloudant found ... assuming first deploy\
-      \ ... skipping Active deploy\"\n\n    cf create-service cloudantNoSQLDB Shared\
-      \ BlueMessenger-cloudant\n    cf create-service Auto-Scaling free BlueMessenger-autoscaling\n\
-      \    cf create-service newrelic standard BlueMessenger-NewRelic\n   cf push \"\
-      ${CF_APP}\" -i 1 -d mybluemix.net -n ${CF_APP} --no-start\n    monitoring=`cf\
-      \ services | grep MonitoringAndAnalytics | awk '{print $1}'`\n    if [ -z \"\
-      $monitoring\" ]\n    then\n    cf create-service MonitoringAndAnalytics Free\
-      \ BlueMessenger-monitoring\n    cf bind-service \"${CF_APP}\" BlueMessenger-monitoring\n\
-      \    else\n    cf bind-service \"${CF_APP}\" $monitoring\n    fi\n    cf bind-service\
-      \ \"${CF_APP}\" BlueMessenger-cloudant\n    cf bind-service \"${CF_APP}\" BlueMessenger-autoscaling\n\
-      \    cf bind-service \"${CF_APP}\" BlueMessenger-NewRelic\n   cf start \"${CF_APP}\"\n   \n\nelse\n\
-      \ \n    export firstDeploy=false\n    env\n\n    UPDATE_ID=${BUILD_NUMBER}\n\
-      \    echo \"update id: ${UPDATE_ID}\"\n    export UPDATE_ID\n    monitoring=`cf\
-      \ services | grep MonitoringAndAnalytics | awk '{print $1}'`\n    cf push \"\
-      ${CF_APP}_${BUILD_NUMBER}\" --no-route -i 1 -s cflinuxfs2 --no-start\n    cf\
-      \ bind-service \"${CF_APP}_${BUILD_NUMBER}\" $monitoring\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
-      \ BlueMessenger-cloudant\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
-      \ BlueMessenger-autoscaling\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
-      \ BlueMessenger-NewRelic\n  cf start \"${CF_APP}_${BUILD_NUMBER}\"\n\nfi "
-
+      if [[ $(echo $output | grep \"${CF_APP}-cloudant\") = \"\" ]]\nthen\n\n  echo\
+      \ \"No instance of $CF_APP}-cloudant found ... assuming first deploy ... skipping\
+      \ Active deploy\"\n\n    cf create-service cloudantNoSQLDB Shared ${CF_APP}-cloudant\n\
+      \    cf create-service Auto-Scaling free ${CF+APP}-autoscaling\n    cf create-service\
+      \ newrelic standard ${CF_APP}-NewRelic\n   cf push \"${CF_APP}\" -i 1 -d mybluemix.net\
+      \ -n ${CF_APP} --no-start\n    monitoring=`cf services | grep MonitoringAndAnalytics\
+      \ | awk '{print $1}'`\n    if [ -z \"$monitoring\" ]\n    then\n    cf create-service\
+      \ MonitoringAndAnalytics Free ${CF_APP}-monitoring\n    cf bind-service \"${CF_APP}\"\
+      \ ${CF_APP}-monitoring\n    else\n    cf bind-service \"${CF_APP}\" $monitoring\n\
+      \    fi\n    cf bind-service \"${CF_APP}\" ${CF_APP}-cloudant\n    cf bind-service\
+      \ \"${CF_APP}\" ${CF_APP}-autoscaling\n    cf bind-service \"${CF_APP}\" ${CF_APP}-NewRelic\n\
+      \    cf start \"${CF_APP}\"\n   \n\nelse\n \n    export firstDeploy=false\n\
+      \    env\n\n    UPDATE_ID=${BUILD_NUMBER}\n    echo \"update id: ${UPDATE_ID}\"\
+      \n    export UPDATE_ID\n    monitoring=`cf services | grep MonitoringAndAnalytics\
+      \ | awk '{print $1}'`\n    cf push \"${CF_APP}_${BUILD_NUMBER}\" --no-route\
+      \ -i 1 -s cflinuxfs2 --no-start\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
+      \ $monitoring\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\" BlueMessenger-cloudant\n\
+      \    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\" BlueMessenger-autoscaling\n\
+      \    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\" BlueMessenger-NewRelic\n\
+      \  cf start \"${CF_APP}_${BUILD_NUMBER}\"\n\nfi "
   - name: Begin AD, Rampup
     type: deployer
     target:
       url: ${CF_TARGET_URL}
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
-      application: ${CF_APP}
+      application: ${CF_APP} 
     script: |-
       #!/bin/bash
 
@@ -363,7 +364,7 @@ stages:
       url: ${CF_TARGET_URL}
       organization: ${CF_ORGANIZATION}
       space: ${CF_SPACE}
-      application: ${CF_APP}
+      application: ${CF_APP} 
     script: |-
       #!/bin/bash
 
