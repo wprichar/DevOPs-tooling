@@ -255,7 +255,7 @@ stages:
       application: ${CF_APP} 
     script: "#!/bin/bash\n#!/bin/bash\noutput=`cf services`\nexport ROUTE_HOSTNAME=${CF_APP}\n\
       if [[ $(echo $output | grep \"${CF_APP}-cloudant\") = \"\" ]]\nthen\n\n  echo\
-      \ \"No instance of $CF_APP}-cloudant found ... assuming first deploy ... skipping\
+      \ \"No instance of ${CF_APP}-cloudant found ... assuming first deploy ... skipping\
       \ Active deploy\"\n\n    cf create-service cloudantNoSQLDB Shared ${CF_APP}-cloudant\n\
       \    cf create-service Auto-Scaling free ${CF_APP}-autoscaling\n    cf create-service\
       \ newrelic standard ${CF_APP}-NewRelic\n   cf push \"${CF_APP}\" -i 1 -d mybluemix.net\
