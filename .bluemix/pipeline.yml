@@ -200,7 +200,7 @@ stages:
       \ first deploy ... skipping test\"\nelse\n   cf stop \"${CF_APP}-test\"\n  \
       \ cf delete \"${CF_APP}-test\" -f\n   cf delete-service \"BlueMessenger-cloudant-test\"\
       \ -f\nfi \n\n"
-- name: Push to Production using Active Deploy service + Appscan
+- name: Push to Production using Active Deploy service
   inputs:
   - type: git
     branch: master
@@ -271,8 +271,7 @@ stages:
       \ bind-service \"${CF_APP}_${BUILD_NUMBER}\" $monitoring\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
       \ BlueMessenger-cloudant\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
       \ BlueMessenger-autoscaling\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
-      \ BlueMessenger-NewRelic\n    cf bind-service \"${CF_APP}_${BUILD_NUMBER}\"\
-      \ BlueMessenger-appscan\n    cf start \"${CF_APP}_${BUILD_NUMBER}\"\n\nfi "
+      \ BlueMessenger-NewRelic\n  cf start \"${CF_APP}_${BUILD_NUMBER}\"\n\nfi "
 
   - name: Begin AD, Rampup
     type: deployer
