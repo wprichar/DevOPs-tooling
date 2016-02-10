@@ -256,16 +256,14 @@ stages:
       \  echo \"No instance of BlueMessenger-cloudant found ... assuming first deploy\
       \ ... skipping Active deploy\"\n\n    cf create-service cloudantNoSQLDB Shared\
       \ BlueMessenger-cloudant\n    cf create-service Auto-Scaling free BlueMessenger-autoscaling\n\
-      \    cf create-service newrelic standard BlueMessenger-NewRelic\n    cf create-service\
-      \ \"AppScan Dynamic Analyzer\" standard BlueMessenger-appscan\n    cf push \"\
+      \    cf create-service newrelic standard BlueMessenger-NewRelic\n   cf push \"\
       ${CF_APP}\" -i 1 -d mybluemix.net -n ${CF_APP} --no-start\n    monitoring=`cf\
       \ services | grep MonitoringAndAnalytics | awk '{print $1}'`\n    if [ -z \"\
       $monitoring\" ]\n    then\n    cf create-service MonitoringAndAnalytics Free\
       \ BlueMessenger-monitoring\n    cf bind-service \"${CF_APP}\" BlueMessenger-monitoring\n\
       \    else\n    cf bind-service \"${CF_APP}\" $monitoring\n    fi\n    cf bind-service\
       \ \"${CF_APP}\" BlueMessenger-cloudant\n    cf bind-service \"${CF_APP}\" BlueMessenger-autoscaling\n\
-      \    cf bind-service \"${CF_APP}\" BlueMessenger-NewRelic\n    cf bind-service\
-      \ \"${CF_APP}\" BlueMessenger-appscan\n    cf start \"${CF_APP}\"\n   \n\nelse\n\
+      \    cf bind-service \"${CF_APP}\" BlueMessenger-NewRelic\n   cf start \"${CF_APP}\"\n   \n\nelse\n\
       \ \n    export firstDeploy=false\n    env\n\n    UPDATE_ID=${BUILD_NUMBER}\n\
       \    echo \"update id: ${UPDATE_ID}\"\n    export UPDATE_ID\n    monitoring=`cf\
       \ services | grep MonitoringAndAnalytics | awk '{print $1}'`\n    cf push \"\
@@ -427,29 +425,3 @@ stages:
       /bin/bash deployscripts_step/activedeploy_step_2.sh
 
       fi
-  - name: App Scan
-    type: deployer
-    target:
-      url: ${CF_TARGET_URL}
-      organization: ${CF_ORGANIZATION}
-      space: ${CF_SPACE}
-      application: ${CF_APP}
-    script: |-
-      #!/bin/bash
-      #!/bin/bash
-      sudo apt-get install curl
-      echo deOps-architecture_27
-      bindingid=`cf env ${CF_APP}_${BUILD_NUMBER} | grep bindingid | awk '{print $2}'`
-      bindingid=${bindingid:1:${#bindingid}-3}
-      password=`cf env ${CF_APP}_${BUILD_NUMBER} | grep password -m 1 | awk '{print $2}'`
-      password=${password:1:${#password}-2}
-      token=`curl -i -H "Content-Type: application/json" -d '{ "Bindingid": "'"$bindingid"'", "Password": "'"$password"'" }' https://appscan.ibmcloud.com:443/api/V2/Account/BluemixLogin | grep Token | awk -F'"' '{print $4}'`
-      echo token
-      echo $token
-      url=http://${CF_APP}.mybluemix.net
-      echo url
-      echo $url
-      scanName=${CF_APP}_${BUILD_NUMBER}
-      echo scanName
-      echo $scanName
-      # curl -i -H "Content-Type: application/json" -H "Authorization: Bearer ${token}" -d '{ "StartingUrl": "'"$url"'", "ScanType": "Production", "ScanName": "'"$scanName"'", "EnableMailNotification": true }' https://appscan.ibmcloud.com:443/api/v2/Scans/DynamicAnalyzer
